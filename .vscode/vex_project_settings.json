@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "344E-VEXCODE-2526",
+		"slot": 1,
+		"description": "pushy backey",
+		"platform": "V5",
+		"creationDate": "Mon, 20 Oct 2025 02:02:48 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20240802_15_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.7.2025041600",
+		"json": 1
+	}
+}
