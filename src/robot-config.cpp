@@ -28,15 +28,19 @@ digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
 digital_out park = digital_out(Brain.ThreeWirePort.D);
 
+bool matchLoaderState = false;
+bool trapdoorState = false;
+bool parkState = false;
+
 void vexcodeInit( void ) {
   // nothing to initialize
 }
 
 void conveyorControl() {
   if(Controller.ButtonR1.pressing()) {
-    conveyor.spin(forward, 100, percent);
+    conveyor.spin(forward, 12, volt);
   } else if(Controller.ButtonR2.pressing()) {
-    conveyor.spin(reverse, 100, percent);
+    conveyor.spin(reverse, 12, volt);
   } else {
     conveyor.stop();
   }
@@ -44,9 +48,9 @@ void conveyorControl() {
 
 void scorerControl() {
   if(Controller.ButtonL1.pressing()) {
-    scorer.spin(forward, 100, percent);
+    scorer.spin(forward, 12, volt);
   } else if(Controller.ButtonL2.pressing()) {
-    scorer.spin(reverse, 100, percent);
+    scorer.spin(reverse, 12, volt);
   } else {
     scorer.stop();
   }
@@ -54,24 +58,24 @@ void scorerControl() {
 
 void matchLoaderControl() {
   if(Controller.ButtonY.pressing()) {
-    matchLoader.set(true);
+    matchLoader.set(!matchLoaderState);
   } else if(Controller.ButtonY.pressing()) {
-    matchLoader.set(false);
+    matchLoader.set(matchLoaderState);
   }
 }
 
 void trapdoorControl() {
   if(Controller.ButtonB.pressing()) {
-    trapdoor.set(true);
+    trapdoor.set(!trapdoorState);
   } else if(Controller.ButtonB.pressing()) {
-    trapdoor.set(false);
+    trapdoor.set(trapdoorState);
   }
 }
 
 void parkControl() {
   if(Controller.ButtonDown.pressing()) {
-    park.set(true);
+    park.set(!parkState);
   } else if(Controller.ButtonDown.pressing()) {
-    park.set(false);
+    park.set(parkState);
   }
 }

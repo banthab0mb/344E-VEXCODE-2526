@@ -23,6 +23,10 @@ extern digital_out matchLoader;
 extern digital_out trapdoor;
 extern digital_out park;
 
+extern bool matchLoaderState;
+extern bool trapdoorState;
+extern bool parkState;
+
 void  vexcodeInit( void );
 
 void conveyorControl();
