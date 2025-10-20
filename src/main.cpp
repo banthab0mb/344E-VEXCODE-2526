@@ -44,13 +44,13 @@ ZERO_TRACKER_NO_ODOM,
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
 
 //Left Motors:
-motor_group(),
+motor_group(leftFront,leftMiddle,leftBack),
 
 //Right Motors:
-motor_group(),
+motor_group(rightFront,rightMiddle,rightBack),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT1,
+PORT9,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -58,7 +58,7 @@ PORT1,
 //External ratio, must be in decimal, in the format of input teeth/output teeth.
 //If your motor has an 84-tooth gear and your wheel has a 60-tooth gear, this value will be 1.4.
 //If the motor drives the wheel directly, this value is 1:
-0.6,
+0.75,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
@@ -226,6 +226,12 @@ void usercontrol(void) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
     chassis.control_arcade();
+
+    conveyorControl();
+    scorerControl();
+    matchLoaderControl();
+    trapdoorControl();
+    parkControl();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
