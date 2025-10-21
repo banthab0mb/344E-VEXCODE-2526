@@ -1,19 +1,12 @@
 #include "vex.h"
+#include "v5lvgl.h"
 
 using namespace vex;
 competition Competition;
 
-/*---------------------------------------------------------------------------*/
-/*                             VEXcode Config                                */
-/*                                                                           */
-/*  Before you do anything else, start by configuring your motors and        */
-/*  sensors. In VEXcode Pro V5, you can do this using the graphical          */
-/*  configurer port icon at the top right. In the VSCode extension, you'll   */
-/*  need to go to robot-config.cpp and robot-config.h and create the         */
-/*  motors yourself by following the style shown. All motors must be         */
-/*  properly reversed, meaning the drive should drive forward when all       */
-/*  motors spin forward.                                                     */
-/*---------------------------------------------------------------------------*/
+// Create lvgl object for the brain banner image
+lv_obj_t* brain_banner;
+LV_IMG_DECLARE(brain_banner_344E);
 
 /*---------------------------------------------------------------------------*/
 /*                             JAR-Template Config                           */
@@ -213,6 +206,12 @@ void autonomous(void) {
 
 void usercontrol(void) {
   // User control code here, inside the loop
+
+  brain_banner = lv_img_create(lv_scr_act());
+  lv_img_set_src(brain_banner, &brain_banner_344E);
+  lv_obj_set_size(brain_banner, 480, 240);
+  lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
+
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
@@ -242,6 +241,9 @@ void usercontrol(void) {
 // Main will set up the competition functions and callbacks.
 //
 int main() {
+  // init lvgl
+  v5_lv_init();
+
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
