@@ -207,6 +207,7 @@ void autonomous(void) {
 void usercontrol(void) {
   // User control code here, inside the loop
 
+  // Display brain banner image on brain screen
   brain_banner = lv_img_create(lv_scr_act());
   lv_img_set_src(brain_banner, &brain_banner_344E);
   lv_obj_set_size(brain_banner, 480, 240);
