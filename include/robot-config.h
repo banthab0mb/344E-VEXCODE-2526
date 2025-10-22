@@ -16,8 +16,8 @@ extern motor rightBack;
 
 //Add your devices below, and don't forget to do the same in robot-config.cpp:
 
-extern motor conveyor;
-extern motor scorer;
+// extern motor conveyor;
+// extern motor scorer;
 
 extern digital_out matchLoader;
 extern digital_out trapdoor;

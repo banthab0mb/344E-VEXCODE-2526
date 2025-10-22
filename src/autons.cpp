@@ -1,4 +1,5 @@
 #include "vex.h"
+#include "sylib/sylib.hpp"
 
 /**
  * Resets the constants for auton movement.
@@ -126,4 +127,8 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(18, 0, 180);
   chassis.holonomic_drive_to_pose(0, 18, 270);
   chassis.holonomic_drive_to_pose(0, 0, 0);
+}
+
+void solo_awp(){
+  chassis.drive_distance(36);
 }

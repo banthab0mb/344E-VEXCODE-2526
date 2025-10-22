@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "v5lvgl.h"
+#include "sylib/sylib.hpp"
 
 using namespace vex;
 competition Competition;

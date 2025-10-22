@@ -1,4 +1,5 @@
 #include "vex.h"
+#include "sylib/sylib.hpp"
 
 using namespace vex;
 using signature = vision::signature;
@@ -21,8 +22,22 @@ motor rightBack = motor(PORT6, ratio6_1, true);
 
 //Add your devices below, and don't forget to do the same in robot-config.h:
 
-motor conveyor = motor(PORT7, ratio6_1, false);
-motor scorer = motor(PORT8, ratio6_1, false);
+sylib::SpeedControllerInfo motor_speed_controller (
+        [](double rpm){return 5;}, // kV function
+        1, // kP
+        1, // kI
+        1, // kD
+        1, // kH
+        false, // anti-windup enabled
+        0, // anti-windup range
+        false, // p controller bounds threshold enabled
+        0, // p controller bounds cutoff enabled
+        1, // kP2 for when over threshold
+        0 // range to target to apply max voltage
+    );
+
+auto conveyor = sylib::Motor(7, 600, false, motor_speed_controller);
+auto scorer = sylib::Motor(8, 600, false, motor_speed_controller);
 
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
@@ -38,9 +53,9 @@ void vexcodeInit( void ) {
 
 void conveyorControl() {
   if(Controller.ButtonR1.pressing()) {
-    conveyor.spin(forward, 12, volt);
+    conveyor.set_velocity_custom_controller(600);
   } else if(Controller.ButtonR2.pressing()) {
-    conveyor.spin(reverse, 12, volt);
+    conveyor.set_velocity_custom_controller(-600);
   } else {
     conveyor.stop();
   }
@@ -48,9 +63,9 @@ void conveyorControl() {
 
 void scorerControl() {
   if(Controller.ButtonL1.pressing()) {
-    scorer.spin(forward, 12, volt);
+    scorer.set_velocity_custom_controller(600);
   } else if(Controller.ButtonL2.pressing()) {
-    scorer.spin(reverse, 12, volt);
+    scorer.set_velocity_custom_controller(-600);
   } else {
     scorer.stop();
   }
