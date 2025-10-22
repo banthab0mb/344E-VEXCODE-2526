@@ -9,13 +9,7 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-/*---------------------------------------------------------------------------*/
-/*                             JAR-Template Config                           */
-/*                                                                           */
-/*  Where all the magic happens. Follow the instructions below to input      */
-/*  all the physical constants and values for your robot. You should         */
-/*  already have configured your motors.                                     */
-/*---------------------------------------------------------------------------*/
+// Chassis constructor
 
 Drive chassis(
 
@@ -103,10 +97,9 @@ int current_auton_selection = 0;
 bool auto_started = false;
 
 /**
- * Function before autonomous. It prints the current auton number on the screen
- * and tapping the screen cycles the selected auton by 1. Add anything else you
- * may need, like resetting pneumatic components. You can rename these autons to
- * be more descriptive, if you like.
+ * Function before autonomous. 
+ * It prints the current auton number on the screen and 
+ * tapping the screen cycles the selected auton by 1. 
  */
 
 void pre_auton() {
@@ -160,9 +153,8 @@ void pre_auton() {
 
 /**
  * Auton function, which runs the selected auton. Case 0 is the default,
- * and will run in the brain screen goes untouched during preauton. Replace
- * drive_test(), for example, with your own auton function you created in
- * autons.cpp and declared in autons.h.
+ * and will run in the brain screen goes untouched during preauton. 
+ * Replace drive_test(), for example, with own auton function 
  */
 
 void autonomous(void) {
@@ -215,15 +207,6 @@ void usercontrol(void) {
   lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
   while (1) {
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
-
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to
-    // update your motors, etc.
-    // ........................................................................
-
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
     chassis.control_arcade();
@@ -240,7 +223,7 @@ void usercontrol(void) {
 }
 
 //
-// Main will set up the competition functions and callbacks.
+// No touchy
 //
 int main() {
   // init lvgl

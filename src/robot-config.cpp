@@ -20,7 +20,7 @@ motor rightFront = motor(PORT4, ratio6_1, true);
 motor rightMiddle = motor(PORT5, ratio6_1, true);
 motor rightBack = motor(PORT6, ratio6_1, true);
 
-//Add your devices below, and don't forget to do the same in robot-config.h:
+// Other devices
 
 motor conveyor = motor(PORT7, ratio6_1, false);
 motor scorer = motor(PORT8, ratio6_1, false);
@@ -32,6 +32,8 @@ digital_out park = digital_out(Brain.ThreeWirePort.D);
 bool matchLoaderState = false;
 bool trapdoorState = false;
 bool parkState = false;
+
+// Functions
 
 void vexcodeInit( void ) {
   // nothing to initialize

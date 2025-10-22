@@ -4,8 +4,7 @@ extern brain Brain;
 
 extern controller Controller;
 
-//To set up a motor called LeftFront here, you'd use
-//extern motor LeftFront;
+// Drive motors
 
 extern motor leftFront;
 extern motor leftMiddle;
@@ -14,7 +13,7 @@ extern motor rightFront;
 extern motor rightMiddle;
 extern motor rightBack;
 
-//Add your devices below, and don't forget to do the same in robot-config.cpp:
+// Devices
 
 extern motor conveyor;
 extern motor scorer;
@@ -27,7 +26,9 @@ extern bool matchLoaderState;
 extern bool trapdoorState;
 extern bool parkState;
 
-void  vexcodeInit( void );
+// Formulas
+
+void vexcodeInit( void );
 
 void conveyorControl();
 void scorerControl();
