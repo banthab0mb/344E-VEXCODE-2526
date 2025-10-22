@@ -8,3 +8,5 @@ https://github.com/JacksonAreaRobotics/JAR-Template
 VEXCode lvgllib 8:
 https://github.com/jpearman/vexcode-lvgllib8_X
 
+Sylib:
+https://github.com/sy1vi3/sylib
