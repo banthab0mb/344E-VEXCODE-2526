@@ -246,6 +246,9 @@ int main() {
   // init lvgl
   v5_lv_init();
 
+  // init sylib
+  sylib::initialize();
+
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
