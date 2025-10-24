@@ -196,6 +196,23 @@ void autonomous(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+bool loaderDown = false;
+void loaderToggle() {
+  loaderDown = !loaderDown;
+  matchLoader.set(loaderDown);
+}
+
+bool parkDown = false;
+void parkToggle() {
+  parkDown = !parkDown;
+  park.set(parkDown);
+}
+
+bool trapdoorUp = false;
+void wingsToggle() {
+  trapdoorUp = !trapdoorUp;
+  trapdoor.set(trapdoorUp);
+}
 
 void usercontrol(void) {
   // User control code here, inside the loop
@@ -206,6 +223,9 @@ void usercontrol(void) {
   lv_obj_set_size(brain_banner, 480, 240);
   lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
+  controller1.ButtonY.pressed(loaderToggle);
+  controller1.ButtonRight.pressed(parkToggle);
+
   while (1) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
@@ -213,9 +233,6 @@ void usercontrol(void) {
 
     conveyorControl();
     scorerControl();
-    matchLoaderControl();
-    trapdoorControl();
-    parkControl();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
