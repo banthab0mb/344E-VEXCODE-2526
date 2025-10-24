@@ -21,10 +21,7 @@ extern motor scorer;
 extern digital_out matchLoader;
 extern digital_out trapdoor;
 extern digital_out park;
-
-extern bool matchLoaderState;
-extern bool trapdoorState;
-extern bool parkState;
+extern digital_out wings;
 
 // Formulas
 

@@ -28,10 +28,7 @@ motor scorer = motor(PORT8, ratio6_1, false);
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
 digital_out park = digital_out(Brain.ThreeWirePort.D);
-
-bool matchLoaderState = false;
-bool trapdoorState = false;
-bool parkState = false;
+digital_out wings = digital_out(Brain.ThreeWirePort.E);
 
 // Functions
 
@@ -56,29 +53,5 @@ void scorerControl() {
     scorer.spin(reverse, 12, volt);
   } else {
     scorer.stop();
-  }
-}
-
-void matchLoaderControl() {
-  if(Controller.ButtonY.pressing()) {
-    matchLoader.set(!matchLoaderState);
-  } else if(Controller.ButtonY.pressing()) {
-    matchLoader.set(matchLoaderState);
-  }
-}
-
-void trapdoorControl() {
-  if(Controller.ButtonB.pressing()) {
-    trapdoor.set(!trapdoorState);
-  } else if(Controller.ButtonB.pressing()) {
-    trapdoor.set(trapdoorState);
-  }
-}
-
-void parkControl() {
-  if(Controller.ButtonDown.pressing()) {
-    park.set(!parkState);
-  } else if(Controller.ButtonDown.pressing()) {
-    park.set(parkState);
   }
 }
