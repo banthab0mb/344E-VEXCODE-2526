@@ -216,15 +216,15 @@ void wingsToggle() {
 
 void usercontrol(void) {
   // User control code here, inside the loop
-  Brain.Screen.clearScreen();
+  auto_started = true;
   // Display brain banner image on brain screen
   brain_banner = lv_img_create(lv_scr_act());
   lv_img_set_src(brain_banner, &brain_banner_344E);
   lv_obj_set_size(brain_banner, 480, 240);
   lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
-  controller1.ButtonY.pressed(loaderToggle);
-  controller1.ButtonRight.pressed(parkToggle);
+  Controller.ButtonY.pressed(loaderToggle);
+  Controller.ButtonRight.pressed(parkToggle);
 
   while (1) {
     //Replace this line with chassis.control_tank(); for tank drive 
