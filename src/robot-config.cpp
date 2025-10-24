@@ -14,10 +14,10 @@ controller Controller;
 //motor LeftFront = motor(PORT1, ratio6_1, false);
 
 motor leftFront = motor(PORT1, ratio6_1, false);
-motor leftMiddle = motor(PORT2, ratio6_1, false);
+motor leftMiddle = motor(PORT2, ratio6_1, true);
 motor leftBack = motor(PORT3, ratio6_1, false);
 motor rightFront = motor(PORT4, ratio6_1, true);
-motor rightMiddle = motor(PORT5, ratio6_1, true);
+motor rightMiddle = motor(PORT5, ratio6_1, false);
 motor rightBack = motor(PORT6, ratio6_1, true);
 
 // Other devices
