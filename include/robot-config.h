@@ -29,7 +29,3 @@ void vexcodeInit( void );
 
 void conveyorControl();
 void scorerControl();
-
-void matchLoaderControl();
-void trapdoorControl();
-void parkControl();

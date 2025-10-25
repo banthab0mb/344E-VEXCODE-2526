@@ -129,6 +129,34 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(0, 0, 0);
 }
 
-void solo_awp(){
+void drive_forward(){
+  chassis.drive_distance(5);
+}
+
+void red_solo_awp(){
   chassis.drive_distance(36);
+}
+
+void blue_solo_awp(){
+  red_solo_awp();
+}
+
+void red_left(){
+  chassis.drive_distance(24);
+  chassis.turn_to_angle(-90);
+  chassis.drive_distance(36);
+}
+
+void red_right(){
+  chassis.drive_distance(24);
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(36);
+}
+
+void blue_left(){
+  red_left();
+}
+
+void blue_right(){
+  red_right();
 }

@@ -5,9 +5,13 @@
 using namespace vex;
 competition Competition;
 
+// Declare stuff that cant live in robot-config.cpp
+
 // Create lvgl object for the brain banner image
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
+
+auto underglow = sylib::Addrled(22,5,64);
 
 // Chassis constructor
 
@@ -38,7 +42,7 @@ motor_group(leftFront,leftMiddle,leftBack),
 motor_group(rightFront,rightMiddle,rightBack),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT9,
+PORT7,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -115,30 +119,41 @@ void pre_auton() {
     Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
     Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
     Brain.Screen.printAt(5, 120, "Selected Auton:");
+
+    // underglow rainbow cycle
+    underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    underglow.cycle(*underglow, 10);
+
+    // auton selector
     switch(current_auton_selection){
       case 0:
-        Brain.Screen.printAt(5, 140, "Auton 1");
+        Brain.Screen.printAt(5, 140, "Drive Forward");
+        underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+        underglow.cycle(*underglow, 10);
         break;
       case 1:
-        Brain.Screen.printAt(5, 140, "Auton 2");
+        Brain.Screen.printAt(5, 140, "Red Left");
+        underglow.set_all(0xFF0000);
         break;
       case 2:
-        Brain.Screen.printAt(5, 140, "Auton 3");
+        Brain.Screen.printAt(5, 140, "Red Right");
+        underglow.set_all(0xFF0000);
         break;
       case 3:
-        Brain.Screen.printAt(5, 140, "Auton 4");
+        Brain.Screen.printAt(5, 140, "Red Solo AWP");
+        underglow.set_all(0xFF0000);
         break;
       case 4:
-        Brain.Screen.printAt(5, 140, "Auton 5");
+        Brain.Screen.printAt(5, 140, "Blue Left");
+        underglow.set_all(0x0000FF);
         break;
       case 5:
-        Brain.Screen.printAt(5, 140, "Auton 6");
+        Brain.Screen.printAt(5, 140, "Blue Right");
+        underglow.set_all(0x0000FF);
         break;
       case 6:
-        Brain.Screen.printAt(5, 140, "Auton 7");
-        break;
-      case 7:
-        Brain.Screen.printAt(5, 140, "Auton 8");
+        Brain.Screen.printAt(5, 140, "Blue Solo AWP");
+        underglow.set_all(0x0000FF);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -147,7 +162,7 @@ void pre_auton() {
     } else if (current_auton_selection == 8){
       current_auton_selection = 0;
     }
-    task::sleep(10);
+    sylib::delay(10);
   }
 }
 
@@ -161,57 +176,54 @@ void autonomous(void) {
   auto_started = true;
   switch(current_auton_selection){ 
     case 0:
-      drive_test();
+      drive_forward();
       break;
     case 1:         
-      drive_test();
+      red_left();
       break;
     case 2:
-      turn_test();
+      red_right();
       break;
     case 3:
-      swing_test();
+      red_solo_awp();
       break;
     case 4:
-      full_test();
+      blue_left();
       break;
     case 5:
-      odom_test();
+      blue_right();
       break;
     case 6:
-      tank_odom_test();
-      break;
-    case 7:
-      holonomic_odom_test();
+      blue_solo_awp();
       break;
  }
 }
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
-bool loaderDown = false;
+// User Control Task
+
+// Pneumatic toggles
+bool loaderState = false;
 void loaderToggle() {
-  loaderDown = !loaderDown;
-  matchLoader.set(loaderDown);
+  loaderState = !loaderState;
+  matchLoader.set(loaderState);
 }
 
-bool parkDown = false;
+bool parkState = false;
 void parkToggle() {
-  parkDown = !parkDown;
-  park.set(parkDown);
+  parkState = !parkState;
+  park.set(parkState);
 }
 
-bool trapdoorUp = false;
+bool trapdoorState = false;
+void trapdoorToggle() {
+  trapdoorState = !trapdoorState;
+  trapdoor.set(trapdoorState);
+}
+
+bool wingsState = false;
 void wingsToggle() {
-  trapdoorUp = !trapdoorUp;
-  trapdoor.set(trapdoorUp);
+  wingsState = !wingsState;
+  wings.set(wingsState);
 }
 
 void usercontrol(void) {
@@ -223,9 +235,13 @@ void usercontrol(void) {
   lv_obj_set_size(brain_banner, 480, 240);
   lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
+  // Controller button callbacks
   Controller.ButtonY.pressed(loaderToggle);
   Controller.ButtonRight.pressed(parkToggle);
+  Controller.ButtonLeft.pressed(trapdoorToggle);
+  Controller.ButtonX.pressed(wingsToggle);
 
+  std::uint32_t clock = sylib::millis();
   while (1) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
@@ -234,8 +250,8 @@ void usercontrol(void) {
     conveyorControl();
     scorerControl();
 
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
+    // 10ms delay to allow other tasks to run
+    sylib::delay_until(&clock, 10);
   }
 }
 

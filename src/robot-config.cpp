@@ -22,8 +22,8 @@ motor rightBack = motor(PORT6, ratio6_1, true);
 
 // Other devices
 
-motor conveyor = motor(PORT7, ratio6_1, false);
-motor scorer = motor(PORT8, ratio6_1, false);
+motor conveyor = motor(PORT8, ratio6_1, false);
+motor scorer = motor(PORT9, ratio6_1, false);
 
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
