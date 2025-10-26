@@ -1,6 +1,10 @@
 #include "vex.h"
 #include "v5lvgl.h"
 #include "sylib/sylib.hpp"
+#include <cmath>
+#include <cstdint>
+#include <string>
+#include <vector>
 
 using namespace vex;
 competition Competition;
