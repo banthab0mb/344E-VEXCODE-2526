@@ -129,34 +129,55 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(0, 0, 0);
 }
 
+// Drives forward X inches
 void drive_forward(){
   chassis.drive_distance(5);
 }
 
+// Solo AWP on red side
 void red_solo_awp(){
   chassis.drive_distance(36);
 }
 
+/** Solo AWP on blue side
+ * Calls the corresponding red side function 
+ * b/c of symmetrical field
+ */
 void blue_solo_awp(){
   red_solo_awp();
 }
 
+// Auton for red left start
 void red_left(){
   chassis.drive_distance(24);
   chassis.turn_to_angle(-90);
   chassis.drive_distance(36);
 }
 
+// Auton for red right start
 void red_right(){
   chassis.drive_distance(24);
   chassis.turn_to_angle(90);
   chassis.drive_distance(36);
 }
 
+/** Blue left start
+ * Calls the corresponding red side function 
+ * b/c of symmetrical field
+ */
 void blue_left(){
   red_left();
 }
 
+/** Blue right start
+ * Calls the corresponding red side function 
+ * b/c of symmetrical field
+ */
 void blue_right(){
   red_right();
+}
+
+// Skills auton
+void skills(){
+  
 }

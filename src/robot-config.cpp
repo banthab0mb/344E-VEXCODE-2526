@@ -8,6 +8,7 @@ using code = vision::code;
 // A global instance of brain used for printing to the V5 Brain screen.
 brain  Brain;
 
+// Main controller
 controller Controller;
 
 //The motor constructor takes motors as (port, ratio, reversed), so for example
@@ -36,6 +37,7 @@ void vexcodeInit( void ) {
   // nothing to initialize
 }
 
+// Control for conveyor
 void conveyorControl() {
   if(Controller.ButtonR1.pressing()) {
     conveyor.spin(forward, 12, volt);
@@ -46,6 +48,7 @@ void conveyorControl() {
   }
 }
 
+// Control for scorer
 void scorerControl() {
   if(Controller.ButtonL1.pressing()) {
     scorer.spin(forward, 12, volt);

@@ -19,6 +19,7 @@ auto underglow = sylib::Addrled(22,5,64);
 
 // Chassis constructor
 
+// robor
 Drive chassis(
 
 //Pick your drive setup from the list below:
@@ -131,33 +132,46 @@ void pre_auton() {
     // auton selector
     switch(current_auton_selection){
       case 0:
+        Brain.Screen.setPenColor(white);
         Brain.Screen.printAt(5, 140, "Drive Forward");
         underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
         underglow.cycle(*underglow, 10);
         break;
       case 1:
+        Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
         underglow.set_all(0xFF0000);
         break;
       case 2:
+        Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
         underglow.set_all(0xFF0000);
         break;
       case 3:
+        Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
         underglow.set_all(0xFF0000);
         break;
       case 4:
+        Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
         underglow.set_all(0x0000FF);
         break;
       case 5:
+        Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
         underglow.set_all(0x0000FF);
         break;
       case 6:
+        Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
         underglow.set_all(0x0000FF);
+        break;
+      case 7:
+        Brain.Screen.setPenColor(green); 
+        Brain.Screen.printAt(5, 140, "Skills");
+        underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+        underglow.cycle(*underglow, 10);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -200,31 +214,39 @@ void autonomous(void) {
     case 6:
       blue_solo_awp();
       break;
+    case 7:
+      skills();
+      break;
  }
 }
 
 // User Control Task
 
 // Pneumatic toggles
+
 bool loaderState = false;
+// Toggle for loader
 void loaderToggle() {
   loaderState = !loaderState;
   matchLoader.set(loaderState);
 }
 
 bool parkState = false;
+// Toggle for double park
 void parkToggle() {
   parkState = !parkState;
   park.set(parkState);
 }
 
 bool trapdoorState = false;
+// Toggle for trapdoor
 void trapdoorToggle() {
   trapdoorState = !trapdoorState;
   trapdoor.set(trapdoorState);
 }
 
 bool wingsState = false;
+// Toggle for wings
 void wingsToggle() {
   wingsState = !wingsState;
   wings.set(wingsState);
