@@ -2,11 +2,8 @@
 
 Uses:
 
-JAR-Template:
-https://github.com/JacksonAreaRobotics/JAR-Template
+[JAR-Template](https://github.com/JacksonAreaRobotics/JAR-Template)
 
-lvgl 8:
-https://github.com/lvgl/lvgl/tree/release/v8.4
+[lvgl 8](https://github.com/lvgl/lvgl/tree/release/v8.4)
 
-Sylib:
-https://github.com/sy1vi3/sylib
+[Sylib](https://github.com/sy1vi3/sylib)

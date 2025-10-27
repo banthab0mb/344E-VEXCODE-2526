@@ -1,5 +1,9 @@
 #include "vex.h"
 #include "sylib/sylib.hpp"
+#include <cmath>
+#include <cstdint>
+#include <string>
+#include <vector>
 
 /**
  * Resets the constants for auton movement.
@@ -139,7 +143,8 @@ void red_solo_awp(){
   chassis.drive_distance(36);
 }
 
-/** Solo AWP on blue side
+/** 
+ * Solo AWP on blue side
  * Calls the corresponding red side function 
  * b/c of symmetrical field
  */
@@ -147,11 +152,41 @@ void blue_solo_awp(){
   red_solo_awp();
 }
 
+/*
+chassis.moveTo(51.891, -17.822, 5000);
+chassis.moveTo(24.283, -20.759, 5000);
+chassis.moveTo(7.836, -6.074, 5000);
+chassis.moveTo(59.233, -47.779, 5000);
+chassis.moveTo(25.458, -47.485, 5000);
+*/
+
 // Auton for red left start
 void red_left(){
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(-90);
-  chassis.drive_distance(36);
+  odom_constants();
+  chassis.set_coordinates(52,-18, 260);
+  chassis.drive_to_pose(24, -21, 250);
+  conveyor.spin(forward, 12, volt);
+  sylib::delay(3000);
+  conveyor.stop();
+  chassis.drive_to_pose(8, -6, 310);
+  conveyor.spin(forward, 12, volt);
+  scorer.spin(forward, 12, volt);
+  sylib::delay(5000);
+  conveyor.stop();
+  scorer.stop();
+  chassis.drive_to_pose(59, -48, 90);
+  matchLoader.set(true);
+  chassis.drive_distance(5);
+  conveyor.spin(forward, 12, volt);
+  sylib::delay(5000);
+  conveyor.stop();
+  chassis.drive_to_pose(25, -47, 90);
+  conveyor.spin(forward, 12, volt);
+  scorer.spin(forward, 12, volt);
+  sylib::delay(5000);
+  conveyor.stop();
+  scorer.stop();
+  chassis.drive_distance(5);
 }
 
 // Auton for red right start
@@ -161,7 +196,8 @@ void red_right(){
   chassis.drive_distance(36);
 }
 
-/** Blue left start
+/** 
+ * Blue left start
  * Calls the corresponding red side function 
  * b/c of symmetrical field
  */
@@ -169,7 +205,8 @@ void blue_left(){
   red_left();
 }
 
-/** Blue right start
+/** 
+ * Blue right start
  * Calls the corresponding red side function 
  * b/c of symmetrical field
  */
