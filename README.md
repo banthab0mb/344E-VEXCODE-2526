@@ -2,8 +2,8 @@
 
 Uses:
 
-<a href="https://github.com/JacksonAreaRobotics/JAR-Template" target="_blank">JAR-Template</a>
+[JAR-Template](https://github.com/JacksonAreaRobotics/JAR-Template)
 
-<a href="https://github.com/lvgl/lvgl/tree/release/v8.4" target="_blank">lvgl 8</a>
+[lvgl 8](https://github.com/lvgl/lvgl/tree/release/v8.4)
 
-<a href="https://github.com/sy1vi3/sylib" target="_blank">Sylib</a>
+[Sylib](https://github.com/sy1vi3/sylib)
