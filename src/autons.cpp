@@ -165,28 +165,38 @@ void red_left(){
   odom_constants();
   chassis.set_coordinates(52,-18, 260);
   chassis.drive_to_pose(24, -21, 250);
+
   conveyor.spin(forward, 12, volt);
   sylib::delay(3000);
   conveyor.stop();
+
   chassis.drive_to_pose(8, -6, 310);
+
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
   sylib::delay(5000);
   conveyor.stop();
   scorer.stop();
+
   chassis.drive_to_pose(59, -48, 90);
+
   matchLoader.set(true);
   chassis.drive_distance(5);
+  
   conveyor.spin(forward, 12, volt);
   sylib::delay(5000);
   conveyor.stop();
+
   chassis.drive_to_pose(25, -47, 90);
+
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
   sylib::delay(5000);
   conveyor.stop();
   scorer.stop();
+
   chassis.drive_distance(5);
+  chassis.drive_distance(-5);
 }
 
 // Auton for red right start

@@ -35,7 +35,7 @@ Drive chassis(
 //HOLONOMIC_TWO_ROTATION
 //
 //Write it here:
-TANK_ONE_SIDEWAYS_ROTATION,
+ZERO_TRACKER_ODOM,
 
 //Add the names of your Drive motors into the motor groups below, separated by commas, i.e. motor_group(Motor1,Motor2,Motor3).
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
@@ -47,7 +47,7 @@ motor_group(leftFront,leftMiddle,leftBack),
 motor_group(rightFront,rightMiddle,rightBack),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT7,
+PORT14,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -170,8 +170,7 @@ void pre_auton() {
       case 7:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
-        underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-        underglow.cycle(*underglow, 10);
+        underglow.set_all(0x7CFC00);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -253,8 +252,10 @@ void wingsToggle() {
 }
 
 void usercontrol(void) {
-  // User control code here, inside the loop
   auto_started = true;
+
+  parkToggle();
+
   // Display brain banner image on brain screen
   brain_banner = lv_img_create(lv_scr_act());
   lv_img_set_src(brain_banner, &brain_banner_344E);

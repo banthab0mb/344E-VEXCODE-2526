@@ -14,21 +14,21 @@ controller Controller;
 //The motor constructor takes motors as (port, ratio, reversed), so for example
 //motor LeftFront = motor(PORT1, ratio6_1, false);
 
-motor leftFront = motor(PORT1, ratio6_1, false);
-motor leftMiddle = motor(PORT2, ratio6_1, true);
-motor leftBack = motor(PORT3, ratio6_1, false);
-motor rightFront = motor(PORT4, ratio6_1, true);
-motor rightMiddle = motor(PORT5, ratio6_1, false);
-motor rightBack = motor(PORT6, ratio6_1, true);
+motor leftFront = motor(PORT1, ratio6_1, true);
+motor leftMiddle = motor(PORT2, ratio6_1, false);
+motor leftBack = motor(PORT3, ratio6_1, true);
+motor rightFront = motor(PORT4, ratio6_1, false);
+motor rightMiddle = motor(PORT5, ratio6_1, true);
+motor rightBack = motor(PORT6, ratio6_1, false);
 
 // Other devices
 
-motor conveyor = motor(PORT8, ratio6_1, false);
-motor scorer = motor(PORT9, ratio6_1, false);
+motor conveyor = motor(PORT7, ratio6_1, false);
+motor scorer = motor(PORT8, ratio6_1, false);
 
-digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
-digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
-digital_out park = digital_out(Brain.ThreeWirePort.D);
+digital_out matchLoader = digital_out(Brain.ThreeWirePort.C);
+digital_out trapdoor = digital_out(Brain.ThreeWirePort.D);
+digital_out park = digital_out(Brain.ThreeWirePort.B);
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
 
 // Functions
