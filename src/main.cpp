@@ -15,7 +15,8 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-auto underglow = sylib::Addrled(22,5,64);
+auto leftUnderglow = sylib::Addrled(22,5,32);
+auto rightUnderglow = sylib::Addrled(22, 6, 32);
 
 // Chassis constructor
 
@@ -35,7 +36,7 @@ Drive chassis(
 //HOLONOMIC_TWO_ROTATION
 //
 //Write it here:
-ZERO_TRACKER_ODOM,
+TANK_ONE_SIDEWAYS_ROTATION,
 
 //Add the names of your Drive motors into the motor groups below, separated by commas, i.e. motor_group(Motor1,Motor2,Motor3).
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
@@ -127,51 +128,65 @@ void pre_auton() {
     Brain.Screen.printAt(5, 120, "Selected Auton:");
 
     // underglow rainbow cycle
-    underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-    underglow.cycle(*underglow, 10);
+    leftUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    leftUnderglow.cycle(*leftUnderglow, 10);
+    rightUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    rightUnderglow.cycle(*rightUnderglow, 10);
 
     // auton selector
     switch(current_auton_selection){
       case 0:
         Brain.Screen.setPenColor(white);
-        Brain.Screen.printAt(5, 140, "Drive Forward");
-        underglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-        underglow.cycle(*underglow, 10);
+        Brain.Screen.printAt(5, 140, "Red Drive Forward");
+        leftUnderglow.set_all(0xFF0000);
+        rightUnderglow.set_all(0xFF0000);
         break;
       case 1:
-        Brain.Screen.setPenColor(red);
-        Brain.Screen.printAt(5, 140, "Red Left");
-        underglow.set_all(0xFF0000);
-        break;
+        Brain.Screen.setPenColor(white);
+        Brain.Screen.printAt(5, 140, "Blue Drive Forward");
+        leftUnderglow.set_all(0x0000FF);
+        rightUnderglow.set_all(0x0000FF);
       case 2:
         Brain.Screen.setPenColor(red);
-        Brain.Screen.printAt(5, 140, "Red Right");
-        underglow.set_all(0xFF0000);
+        Brain.Screen.printAt(5, 140, "Red Left");
+        leftUnderglow.set_all(0xFF0000);
+        rightUnderglow.set_all(0xFF0000);
         break;
       case 3:
         Brain.Screen.setPenColor(red);
-        Brain.Screen.printAt(5, 140, "Red Solo AWP");
-        underglow.set_all(0xFF0000);
+        Brain.Screen.printAt(5, 140, "Red Right");
+        leftUnderglow.set_all(0xFF0000);
+        rightUnderglow.set_all(0xFF0000);
         break;
       case 4:
-        Brain.Screen.setPenColor(blue);
-        Brain.Screen.printAt(5, 140, "Blue Left");
-        underglow.set_all(0x0000FF);
+        Brain.Screen.setPenColor(red);
+        Brain.Screen.printAt(5, 140, "Red Solo AWP");
+        leftUnderglow.set_all(0xFF0000);
+        rightUnderglow.set_all(0xFF0000);
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
-        Brain.Screen.printAt(5, 140, "Blue Right");
-        underglow.set_all(0x0000FF);
+        Brain.Screen.printAt(5, 140, "Blue Left");
+        leftUnderglow.set_all(0x0000FF);
+        rightUnderglow.set_all(0x0000FF);
         break;
       case 6:
         Brain.Screen.setPenColor(blue);
-        Brain.Screen.printAt(5, 140, "Blue Solo AWP");
-        underglow.set_all(0x0000FF);
+        Brain.Screen.printAt(5, 140, "Blue Right");
+        leftUnderglow.set_all(0x0000FF);
+        rightUnderglow.set_all(0x0000FF);
         break;
       case 7:
+        Brain.Screen.setPenColor(blue);
+        Brain.Screen.printAt(5, 140, "Blue Solo AWP");
+        leftUnderglow.set_all(0x0000FF);
+        rightUnderglow.set_all(0x0000FF);
+        break;
+      case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
-        underglow.set_all(0x7CFC00);
+        leftUnderglow.set_all(0x7CFC00);
+        rightUnderglow.set_all(0x7CFC00);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -196,25 +211,28 @@ void autonomous(void) {
     case 0:
       drive_forward();
       break;
-    case 1:         
+    case 1:
+      drive_forward();
+      break;
+    case 2:         
       red_left();
       break;
-    case 2:
+    case 3:
       red_right();
       break;
-    case 3:
+    case 4:
       red_solo_awp();
       break;
-    case 4:
+    case 5:
       blue_left();
       break;
-    case 5:
+    case 6:
       blue_right();
       break;
-    case 6:
+    case 7:
       blue_solo_awp();
       break;
-    case 7:
+    case 8:
       skills();
       break;
  }
@@ -224,38 +242,46 @@ void autonomous(void) {
 
 // Pneumatic toggles
 
-bool loaderState = false;
+bool userLoaderState = false;
 // Toggle for loader
-void loaderToggle() {
-  loaderState = !loaderState;
-  matchLoader.set(loaderState);
+void userLoaderToggle() {
+  userLoaderState = !userLoaderState;
+  matchLoader.set(userLoaderState);
 }
 
-bool parkState = false;
+bool userParkState = false;
 // Toggle for double park
-void parkToggle() {
-  parkState = !parkState;
-  park.set(parkState);
+void userParkToggle() {
+  userParkState = !userParkState;
+  park.set(userParkState);
 }
 
-bool trapdoorState = false;
+bool userTrapdoorState = false;
 // Toggle for trapdoor
-void trapdoorToggle() {
-  trapdoorState = !trapdoorState;
-  trapdoor.set(trapdoorState);
+void userTrapdoorToggle() {
+  userTrapdoorState = !userTrapdoorState;
+  trapdoor.set(userTrapdoorState);
 }
 
-bool wingsState = false;
+bool userWingsState = false;
 // Toggle for wings
-void wingsToggle() {
-  wingsState = !wingsState;
-  wings.set(wingsState);
+void userWingsToggle() {
+  userWingsState = !userWingsState;
+  wings.set(userWingsState);
 }
 
 void usercontrol(void) {
-  auto_started = true;
+  
+  if (auto_started == false) {
+    leftUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    leftUnderglow.cycle(*leftUnderglow, 10);
+    rightUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
+    rightUnderglow.cycle(*rightUnderglow, 10);
+  }
 
-  parkToggle();
+  userParkToggle();
+
+  auto_started = true;
 
   // Display brain banner image on brain screen
   brain_banner = lv_img_create(lv_scr_act());
@@ -264,10 +290,10 @@ void usercontrol(void) {
   lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
   // Controller button callbacks
-  Controller.ButtonY.pressed(loaderToggle);
-  Controller.ButtonRight.pressed(parkToggle);
-  Controller.ButtonLeft.pressed(trapdoorToggle);
-  Controller.ButtonX.pressed(wingsToggle);
+  Controller.ButtonY.pressed(userLoaderToggle);
+  Controller.ButtonRight.pressed(userParkToggle);
+  Controller.ButtonLeft.pressed(userTrapdoorToggle);
+  Controller.ButtonX.pressed(userWingsToggle);
 
   std::uint32_t clock = sylib::millis();
   while (1) {

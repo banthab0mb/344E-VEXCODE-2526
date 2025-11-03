@@ -41,96 +41,32 @@ void odom_constants(){
   chassis.drive_min_voltage = 0;
 }
 
-/**
- * The expected behavior is to return to the start position.
- */
-
-void drive_test(){
-  chassis.drive_distance(6);
-  chassis.drive_distance(12);
-  chassis.drive_distance(18);
-  chassis.drive_distance(-36);
+bool loaderState = false;
+// Toggle for loader
+void loaderToggle() {
+  loaderState = !loaderState;
+  matchLoader.set(loaderState);
 }
 
-/**
- * The expected behavior is to return to the start angle, after making a complete turn.
- */
-
-void turn_test(){
-  chassis.turn_to_angle(5);
-  chassis.turn_to_angle(30);
-  chassis.turn_to_angle(90);
-  chassis.turn_to_angle(225);
-  chassis.turn_to_angle(0);
+bool parkState = false;
+// Toggle for double park
+void parkToggle() {
+  parkState = !parkState;
+  park.set(parkState);
 }
 
-/**
- * Should swing in a fun S shape.
- */
-
-void swing_test(){
-  chassis.left_swing_to_angle(90);
-  chassis.right_swing_to_angle(0);
+bool trapdoorState = false;
+// Toggle for trapdoor
+void trapdoorToggle() {
+  trapdoorState = !trapdoorState;
+  trapdoor.set(trapdoorState);
 }
 
-/**
- * A little of this, a little of that; it should end roughly where it started.
- */
-
-void full_test(){
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(-45);
-  chassis.drive_distance(-36);
-  chassis.right_swing_to_angle(-90);
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(0);
-}
-
-/**
- * Doesn't drive the robot, but just prints coordinates to the Brain screen 
- * so you can check if they are accurate to life. Push the robot around and
- * see if the coordinates increase like you'd expect.
- */
-
-void odom_test(){
-  chassis.set_coordinates(0, 0, 0);
-  while(1){
-    Brain.Screen.clearScreen();
-    Brain.Screen.printAt(5,20, "X: %f", chassis.get_X_position());
-    Brain.Screen.printAt(5,40, "Y: %f", chassis.get_Y_position());
-    Brain.Screen.printAt(5,60, "Heading: %f", chassis.get_absolute_heading());
-    Brain.Screen.printAt(5,80, "ForwardTracker: %f", chassis.get_ForwardTracker_position());
-    Brain.Screen.printAt(5,100, "SidewaysTracker: %f", chassis.get_SidewaysTracker_position());
-    task::sleep(20);
-  }
-}
-
-/**
- * Should end in the same place it began, but the second movement
- * will be curved while the first is straight.
- */
-
-void tank_odom_test(){
-  odom_constants();
-  chassis.set_coordinates(0, 0, 0);
-  chassis.turn_to_point(24, 24);
-  chassis.drive_to_point(24,24);
-  chassis.drive_to_point(0,0);
-  chassis.turn_to_angle(0);
-}
-
-/**
- * Drives in a square while making a full turn in the process. Should
- * end where it started.
- */
-
-void holonomic_odom_test(){
-  odom_constants();
-  chassis.set_coordinates(0, 0, 0);
-  chassis.holonomic_drive_to_pose(0, 18, 90);
-  chassis.holonomic_drive_to_pose(18, 0, 180);
-  chassis.holonomic_drive_to_pose(0, 18, 270);
-  chassis.holonomic_drive_to_pose(0, 0, 0);
+bool wingsState = false;
+// Toggle for wings
+void wingsToggle() {
+  wingsState = !wingsState;
+  wings.set(wingsState);
 }
 
 // Drives forward X inches
@@ -146,8 +82,8 @@ void red_solo_awp(){
 	chassis.drive_to_pose(45, -34, 900);
 	chassis.left_swing_to_angle(700);
 	
-	matchLoader.set(true);
-	trapdoor.set(false);
+	loaderToggle();
+	trapdoorToggle();
 	sylib::delay(250);
 	chassis.drive_to_pose(54, -53, 600);
 	conveyor.spin(forward, 12, volt);
@@ -158,7 +94,7 @@ void red_solo_awp(){
 	scorer.spin(forward, 12, volt);
 	sylib::delay(800);
 	scorer.stop();
-	matchLoader.set(false);
+	loaderToggle();
 	chassis.left_swing_to_angle(900);
 	chassis.drive_to_pose(20, -30 , 800);
 	chassis.turn_to_angle(135, 800);
@@ -168,18 +104,18 @@ void red_solo_awp(){
 	
 	scorer.spin(forward, 7.56, volt);
 	conveyor.spin(forward, 9, volt);
-	trapdoor.set(true);
+	trapdoorToggle();
 	sylib::delay(700);
 	scorer.stop();
 	chassis.drive_to_pose(13, -24 , 800);
-	trapdoor.set(false);
+	trapdoorToggle();
 	chassis.turn_to_angle(0, 600);
 	chassis.drive_to_pose(16.5, 10 , 1000);
 	chassis.turn_to_angle(80, 600);
 	chassis.drive_to_pose(35, 39.2, 1000);
 	chassis.turn_to_angle(90, 400);
 	
-	matchLoader.set(true);
+	loaderToggle();
 	sylib::delay(180);
 	chassis.drive_to_pose(55, 40, 700);
 	conveyor.spin(forward, 12, volt);
@@ -224,12 +160,13 @@ void red_left(){
 
   chassis.drive_to_pose(59, -48, 90);
 
-  matchLoader.set(true);
+  loaderToggle();
   chassis.drive_distance(5);
   
   conveyor.spin(forward, 12, volt);
   sylib::delay(5000);
   conveyor.stop();
+  loaderToggle();
 
   chassis.drive_to_pose(25, -47, 90);
 
@@ -245,9 +182,51 @@ void red_left(){
 
 // Auton for red right start
 void red_right(){
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(90);
-  chassis.drive_distance(36);
+  odom_constants();
+
+  chassis.set_coordinates(46.5, 16.5, 270);
+
+  conveyor.spin(forward, 12, volt);
+
+  chassis.drive_to_pose(12, 25, 1100);
+  chassis.drive_to_pose(17, 23, 700);
+  chassis.turn_to_angle(-135, 700);
+
+  conveyor.stop();
+
+  chassis.drive_to_pose(9, 20.5, 800);
+
+  conveyor.spin(reverse, 12, volt);
+
+  sylib::delay(1000);
+
+  chassis.drive_to_pose(7, 18, 500);
+
+  conveyor.stop();
+
+  chassis.drive_to_pose(32, 51, 1500);
+  chassis.turn_to_angle(90, 900);
+
+  loaderToggle();
+
+  chassis.drive_to_pose(55, 48, 800);
+  conveyor.spin(forward, 12, volt);
+
+  sylib::delay(700);
+
+  conveyor.stop();
+
+  chassis.drive_to_pose(10, 49, 1000);
+
+  conveyor.spin(forward, 12, volt);
+
+  scorer.spin(forward, 12, volt);
+
+  sylib::delay(2100);
+
+  chassis.drive_to_pose(27, 49.5, 800);
+  chassis.drive_to_pose(10, 49.5, 1500);
+
 }
 
 /** 
