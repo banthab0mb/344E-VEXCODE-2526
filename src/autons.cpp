@@ -79,55 +79,55 @@ void red_solo_awp(){
   odom_constants();
 
   chassis.set_coordinates(46.5, -16.5, 180);
-	chassis.drive_to_pose(45, -34, 900);
+	chassis.drive_to_point(45, -34);
 	chassis.left_swing_to_angle(700);
 	
 	loaderToggle();
 	trapdoorToggle();
 	sylib::delay(250);
-	chassis.drive_to_pose(54, -53, 600);
+	chassis.drive_to_point(54, -53);
 	conveyor.spin(forward, 12, volt);
 	
 	sylib::delay(250);
-	chassis.drive_to_pose(17, -54, 1000);
+	chassis.drive_to_point(17, -54);
 	
 	scorer.spin(forward, 12, volt);
 	sylib::delay(800);
 	scorer.stop();
 	loaderToggle();
-	chassis.left_swing_to_angle(900);
-	chassis.drive_to_pose(20, -30 , 800);
-	chassis.turn_to_angle(135, 800);
+	chassis.left_swing_to_angle(-45);
+	chassis.drive_to_point(20, -30);
+	chassis.turn_to_angle(135);
 	
 	sylib::delay(20);
-	chassis.drive_to_pose(0, -14 , 700);
+	chassis.drive_to_point(0, -14);
 	
 	scorer.spin(forward, 7.56, volt);
 	conveyor.spin(forward, 9, volt);
 	trapdoorToggle();
 	sylib::delay(700);
 	scorer.stop();
-	chassis.drive_to_pose(13, -24 , 800);
+	chassis.drive_to_point(13, -24);
 	trapdoorToggle();
-	chassis.turn_to_angle(0, 600);
-	chassis.drive_to_pose(16.5, 10 , 1000);
-	chassis.turn_to_angle(80, 600);
-	chassis.drive_to_pose(35, 39.2, 1000);
-	chassis.turn_to_angle(90, 400);
+	chassis.turn_to_angle(0);
+	chassis.drive_to_point(16.5, 10);
+	chassis.turn_to_angle(80);
+	chassis.drive_to_point(35, 39.2);
+	chassis.turn_to_angle(90);
 	
 	loaderToggle();
 	sylib::delay(180);
-	chassis.drive_to_pose(55, 40, 700);
+	chassis.drive_to_point(55, 40);
 	conveyor.spin(forward, 12, volt);
 	
 	sylib::delay(570);
 	conveyor.stop();
-	chassis.drive_to_pose(9, 44.5, 800);
+	chassis.drive_to_point(9, 44.5);
 	
 	conveyor.spin(forward, 12, volt);
 	scorer.spin(forward, 12, volt);
 	sylib::delay(700);
-	chassis.drive_to_pose(25, 44.5, 1000);
+	chassis.drive_to_point(25, 44.5);
 }
 
 /** 
@@ -188,35 +188,35 @@ void red_right(){
 
   conveyor.spin(forward, 12, volt);
 
-  chassis.drive_to_pose(12, 25, 1100);
-  chassis.drive_to_pose(17, 23, 700);
-  chassis.turn_to_angle(-135, 700);
+  chassis.drive_to_point(12, 25);
+  chassis.drive_to_point(17, 23);
+  chassis.turn_to_angle(-135);
 
   conveyor.stop();
 
-  chassis.drive_to_pose(9, 20.5, 800);
+  chassis.drive_to_point(9, 20.5);
 
   conveyor.spin(reverse, 12, volt);
 
   sylib::delay(1000);
 
-  chassis.drive_to_pose(7, 18, 500);
+  chassis.drive_to_point(7, 18);
 
   conveyor.stop();
 
-  chassis.drive_to_pose(32, 51, 1500);
-  chassis.turn_to_angle(90, 900);
+  chassis.drive_to_point(32, 51);
+  chassis.turn_to_angle(90);
 
   loaderToggle();
 
-  chassis.drive_to_pose(55, 48, 800);
+  chassis.drive_to_point(55, 48);
   conveyor.spin(forward, 12, volt);
 
   sylib::delay(700);
 
   conveyor.stop();
 
-  chassis.drive_to_pose(10, 49, 1000);
+  chassis.drive_to_point(10, 49);
 
   conveyor.spin(forward, 12, volt);
 
@@ -224,8 +224,8 @@ void red_right(){
 
   sylib::delay(2100);
 
-  chassis.drive_to_pose(27, 49.5, 800);
-  chassis.drive_to_pose(10, 49.5, 1500);
+  chassis.drive_to_point(27, 49.5);
+  chassis.drive_to_point(10, 49.5);
 
 }
 
@@ -249,5 +249,43 @@ void blue_right(){
 
 // Skills auton
 void skills(){
-  
+  odom_constants();
+
+  chassis.set_coordinates(-48, 16, 90);
+
+  trapdoorToggle();
+
+  conveyor.spin(forward, 12, volt);
+
+  chassis.drive_to_point(-22, 32);
+
+  chassis.turn_to_angle(-60);
+
+  chassis.drive_to_point(-33, 48.5);
+
+  // aim for loading zone
+  chassis.turn_to_angle(45);
+
+  loaderToggle();
+
+  sylib::delay(200);
+
+  // move to the loading 
+  chassis.drive_to_point(-50, 50);
+
+  sylib::delay(1500);
+
+  // score
+  chassis.drive_to_point(-40, 51);
+
+  chassis.turn_to_angle(135);
+
+  chassis.drive_to_point(32, 35);
+  chassis.turn_to_angle(90);
+
+  loaderToggle();
+
+  chassis.drive_to_point(42, 48.5);
+  chassis.turn_to_angle(90);
+
 }
