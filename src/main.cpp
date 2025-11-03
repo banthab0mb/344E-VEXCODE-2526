@@ -299,7 +299,10 @@ void usercontrol(void) {
   while (1) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
-    chassis.control_arcade();
+    
+    //chassis.control_arcade();
+
+    updateCurvatureDrive();
 
     conveyorControl();
     scorerControl();
