@@ -26,9 +26,9 @@ motor rightBack = motor(PORT6, ratio6_1, false);
 motor conveyor = motor(PORT7, ratio6_1, false);
 motor scorer = motor(PORT8, ratio6_1, false);
 
-digital_out matchLoader = digital_out(Brain.ThreeWirePort.C);
-digital_out trapdoor = digital_out(Brain.ThreeWirePort.D);
-digital_out park = digital_out(Brain.ThreeWirePort.B);
+digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
+digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
+digital_out park = digital_out(Brain.ThreeWirePort.D);
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
 
 // Functions

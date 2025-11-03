@@ -92,7 +92,7 @@ PORT3,     -PORT4,
 6.5,
 
 //Input the Sideways Tracker Port, following the same steps as the Forward Tracker Port:
-PORT10,
+PORT9,
 
 //Sideways tracker diameter (reverse to make the direction switch):
 -2,
@@ -117,7 +117,8 @@ void pre_auton() {
   default_constants();
 
   while(!auto_started){
-    Brain.Screen.clearScreen();
+    
+    Brain.Screen.setPenColor(white);
     Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
     Brain.Screen.printAt(5, 40, "Battery Percentage:");
     Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
