@@ -140,7 +140,58 @@ void drive_forward(){
 
 // Solo AWP on red side
 void red_solo_awp(){
-  chassis.drive_distance(36);
+  odom_constants();
+
+  chassis.set_coordinates(46.5, -16.5, 180);
+	chassis.drive_to_pose(45, -34, 900);
+	chassis.left_swing_to_angle(700);
+	
+	matchLoader.set(true);
+	trapdoor.set(false);
+	sylib::delay(250);
+	chassis.drive_to_pose(54, -53, 600);
+	conveyor.spin(forward, 12, volt);
+	
+	sylib::delay(250);
+	chassis.drive_to_pose(17, -54, 1000);
+	
+	scorer.spin(forward, 12, volt);
+	sylib::delay(800);
+	scorer.stop();
+	matchLoader.set(false);
+	chassis.left_swing_to_angle(900);
+	chassis.drive_to_pose(20, -30 , 800);
+	chassis.turn_to_angle(135, 800);
+	
+	sylib::delay(20);
+	chassis.drive_to_pose(0, -14 , 700);
+	
+	scorer.spin(forward, 7.56, volt);
+	conveyor.spin(forward, 9, volt);
+	trapdoor.set(true);
+	sylib::delay(700);
+	scorer.stop();
+	chassis.drive_to_pose(13, -24 , 800);
+	trapdoor.set(false);
+	chassis.turn_to_angle(0, 600);
+	chassis.drive_to_pose(16.5, 10 , 1000);
+	chassis.turn_to_angle(80, 600);
+	chassis.drive_to_pose(35, 39.2, 1000);
+	chassis.turn_to_angle(90, 400);
+	
+	matchLoader.set(true);
+	sylib::delay(180);
+	chassis.drive_to_pose(55, 40, 700);
+	conveyor.spin(forward, 12, volt);
+	
+	sylib::delay(570);
+	conveyor.stop();
+	chassis.drive_to_pose(9, 44.5, 800);
+	
+	conveyor.spin(forward, 12, volt);
+	scorer.spin(forward, 12, volt);
+	sylib::delay(700);
+	chassis.drive_to_pose(25, 44.5, 1000);
 }
 
 /** 
@@ -152,17 +203,10 @@ void blue_solo_awp(){
   red_solo_awp();
 }
 
-/*
-chassis.moveTo(51.891, -17.822, 5000);
-chassis.moveTo(24.283, -20.759, 5000);
-chassis.moveTo(7.836, -6.074, 5000);
-chassis.moveTo(59.233, -47.779, 5000);
-chassis.moveTo(25.458, -47.485, 5000);
-*/
-
 // Auton for red left start
 void red_left(){
   odom_constants();
+
   chassis.set_coordinates(52,-18, 260);
   chassis.drive_to_pose(24, -21, 250);
 
