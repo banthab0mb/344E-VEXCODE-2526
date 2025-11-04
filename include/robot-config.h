@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 #include <cstdint>
 #include <string>
@@ -34,3 +36,7 @@ void vexcodeInit( void );
 
 void conveyorControl();
 void scorerControl();
+
+extern bool colorSortOn; 
+
+int colorSort();

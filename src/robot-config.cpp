@@ -31,6 +31,8 @@ digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
 digital_out park = digital_out(Brain.ThreeWirePort.D);
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
 
+optical opticalSensor = optical(PORT10);
+
 // Functions
 
 void vexcodeInit( void ) {
@@ -57,4 +59,37 @@ void scorerControl() {
   } else {
     scorer.stop();
   }
+}
+
+bool colorSortOn = false;
+bool removeRed;
+bool ballDetected;
+
+int colorSort() {
+
+    opticalSensor.setLightPower(100);
+
+    while (colorSortOn == true) {
+
+		  if (removeRed) { 
+
+        if (opticalSensor.hue() >= 0 && opticalSensor.hue() <= 20) {
+          scorer.spin(forward, 12, volt);
+          ballDetected = true;
+        } else if (opticalSensor.hue() >= 200 && opticalSensor.hue() < 250 && ballDetected) {
+          ballDetected = false;
+        }
+      } else { 
+        if (opticalSensor.hue() >= 0 && opticalSensor.hue() >= 120) {
+          scorer.spin(forward, 12, volt);
+          ballDetected = true;
+
+        } else if (opticalSensor.hue() >= 0 && opticalSensor.hue() <= 20) {
+          ballDetected = false;
+        }
+      }
+		sylib::delay(20);
+
+    }
+    return 0;
 }

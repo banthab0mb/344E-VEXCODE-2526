@@ -207,6 +207,10 @@ void pre_auton() {
 
 void autonomous(void) {
   auto_started = true;
+
+  colorSortOn = true;
+  sylib::Task colorSorting(colorSort);
+
   switch(current_auton_selection){ 
     case 0:
       drive_forward();
@@ -236,6 +240,9 @@ void autonomous(void) {
       skills();
       break;
  }
+
+ colorSortOn = false;
+ colorSorting.stop();
 }
 
 // User Control Task
