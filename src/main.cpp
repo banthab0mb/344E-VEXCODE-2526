@@ -299,11 +299,14 @@ void usercontrol(void) {
   while (1) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
-    
-    //chassis.control_arcade();
 
-    updateCurvatureDrive();
+    chassis.control_arcade(); // Standard arcade with deadband
 
+    //updateCurvatureDrive(); // Curvature drive
+
+    //exponential(); // Exponential drive
+
+    // Motor controls
     conveyorControl();
     scorerControl();
 

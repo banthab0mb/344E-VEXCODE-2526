@@ -25,6 +25,7 @@
 #include "JAR-Template/PID.h"
 #include "autons.h"
 #include "curvature-drive.h"
+#include "exponential-drive.h"
 
 #define waitUntil(condition)                                                   \
   do {                                                                         \
