@@ -2,3 +2,5 @@
 
 void curvatureDrive(double forward, double curvature);
 void updateCurvatureDrive();
+
+void exponential();
