@@ -15,8 +15,8 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-auto leftUnderglow = sylib::Addrled(22,5,32);
-auto rightUnderglow = sylib::Addrled(22, 6, 32);
+auto leftUnderglow = sylib::Addrled(22,6,32);
+auto rightUnderglow = sylib::Addrled(22, 7, 32);
 
 // Chassis constructor
 
@@ -48,7 +48,7 @@ motor_group(leftFront,leftMiddle,leftBack),
 motor_group(rightFront,rightMiddle,rightBack),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT14,
+PORT9,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -93,7 +93,7 @@ PORT3,     -PORT4,
 6.5,
 
 //Input the Sideways Tracker Port, following the same steps as the Forward Tracker Port:
-PORT9,
+PORT11,
 
 //Sideways tracker diameter (reverse to make the direction switch):
 -2,
