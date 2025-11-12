@@ -202,7 +202,6 @@ void pre_auton() {
 /**
  * Auton function, which runs the selected auton. Case 0 is the default,
  * and will run in the brain screen goes untouched during preauton. 
- * Replace drive_test(), for example, with own auton function 
  */
 
 void autonomous(void) {
@@ -245,8 +244,6 @@ void autonomous(void) {
  colorSorting.stop();
 }
 
-// User Control Task
-
 // Pneumatic toggles
 
 bool userLoaderState = false;
@@ -276,6 +273,8 @@ void userWingsToggle() {
   userWingsState = !userWingsState;
   wings.set(userWingsState);
 }
+
+// User Control Task
 
 void usercontrol(void) {
   
