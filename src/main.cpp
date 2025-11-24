@@ -15,8 +15,8 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-auto leftUnderglow = sylib::Addrled(22,6,32);
-auto rightUnderglow = sylib::Addrled(22, 7, 32);
+auto leftUnderglow = sylib::Addrled(22, 2, 60);
+auto rightUnderglow = sylib::Addrled(22, 3, 60);
 
 // Chassis constructor
 
@@ -119,6 +119,7 @@ void pre_auton() {
 
   while(!auto_started){
     
+    Brain.Screen.clearScreen();
     Brain.Screen.setPenColor(white);
     Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
     Brain.Screen.printAt(5, 40, "Battery Percentage:");
@@ -136,33 +137,34 @@ void pre_auton() {
     // auton selector
     switch(current_auton_selection){
       case 0:
-        Brain.Screen.setPenColor(white);
+        Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
         leftUnderglow.set_all(0xFF0000);
         rightUnderglow.set_all(0xFF0000);
         break;
       case 1:
-        Brain.Screen.setPenColor(white);
-        Brain.Screen.printAt(5, 140, "Blue Drive Forward");
-        leftUnderglow.set_all(0x0000FF);
-        rightUnderglow.set_all(0x0000FF);
-      case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
         leftUnderglow.set_all(0xFF0000);
         rightUnderglow.set_all(0xFF0000);
         break;
-      case 3:
+      case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
         leftUnderglow.set_all(0xFF0000);
         rightUnderglow.set_all(0xFF0000);
         break;
-      case 4:
+      case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
         leftUnderglow.set_all(0xFF0000);
         rightUnderglow.set_all(0xFF0000);
+        break;
+      case 4:
+        Brain.Screen.setPenColor(blue);
+        Brain.Screen.printAt(5, 140, "Blue Drive Forward");
+        leftUnderglow.set_all(0x0000FF);
+        rightUnderglow.set_all(0x0000FF);
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
@@ -192,7 +194,7 @@ void pre_auton() {
     if(Brain.Screen.pressing()){
       while(Brain.Screen.pressing()) {}
       current_auton_selection ++;
-    } else if (current_auton_selection == 8){
+    } else if (current_auton_selection == 9){
       current_auton_selection = 0;
     }
     sylib::delay(10);
@@ -207,24 +209,22 @@ void pre_auton() {
 void autonomous(void) {
   auto_started = true;
 
-  colorSortOn = true;
-  sylib::Task colorSorting(colorSort);
 
   switch(current_auton_selection){ 
     case 0:
       drive_forward();
       break;
-    case 1:
-      drive_forward();
-      break;
-    case 2:         
+    case 1:         
       red_left();
       break;
-    case 3:
+    case 2:
       red_right();
       break;
-    case 4:
+    case 3:
       red_solo_awp();
+      break;
+    case 4:
+      drive_forward();
       break;
     case 5:
       blue_left();
@@ -239,9 +239,6 @@ void autonomous(void) {
       skills();
       break;
  }
-
- colorSortOn = false;
- colorSorting.stop();
 }
 
 // Pneumatic toggles
