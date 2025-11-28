@@ -15,8 +15,8 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-auto leftUnderglow = sylib::Addrled(22, 2, 60);
-auto rightUnderglow = sylib::Addrled(22, 3, 60);
+auto leftUnderglow = sylib::Addrled(22, 7, 60);
+auto rightUnderglow = sylib::Addrled(22, 8, 60);
 
 // Chassis constructor
 
@@ -82,7 +82,7 @@ PORT3,     -PORT4,
 //If you are using position tracking, this is the Forward Tracker port (the tracker which runs parallel to the direction of the chassis).
 //If this is a rotation sensor, enter it in "PORT1" format, inputting the port below.
 //If this is an encoder, enter the port as an integer. Triport A will be a "1", Triport B will be a "2", etc.
-3,
+PORT11,
 
 //Input the Forward Tracker diameter (reverse it to make the direction switch):
 2.75,

@@ -36,7 +36,3 @@ void vexcodeInit( void );
 
 void conveyorControl();
 void scorerControl();
-
-extern bool colorSortOn; 
-
-int colorSort();
