@@ -284,8 +284,6 @@ void usercontrol(void) {
     rightUnderglow.cycle(*rightUnderglow, 10);
   } */
 
-  userParkToggle();
-
   auto_started = true;
 
   // Display brain banner image on brain screen
