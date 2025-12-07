@@ -122,7 +122,6 @@ void pre_auton() {
   while(!auto_started){
     
     Brain.Screen.clearScreen();
-    Controller.Screen.clearScreen();
     Brain.Screen.setPenColor(white);
     Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
     Brain.Screen.printAt(5, 40, "Battery Percentage:");
@@ -142,6 +141,7 @@ void pre_auton() {
       case 0:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Red Drive Forward");
         // leftUnderglow.set_all(0xFF0000);
         // rightUnderglow.set_all(0xFF0000);
@@ -149,6 +149,7 @@ void pre_auton() {
       case 1:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Red Left");
         // leftUnderglow.set_all(0xFF0000);
         // rightUnderglow.set_all(0xFF0000);
@@ -156,6 +157,7 @@ void pre_auton() {
       case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Red Right");
         // leftUnderglow.set_all(0xFF0000);
         // rightUnderglow.set_all(0xFF0000);
@@ -163,6 +165,7 @@ void pre_auton() {
       case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Red Solo AWP");
         // leftUnderglow.set_all(0xFF0000);
         // rightUnderglow.set_all(0xFF0000);
@@ -170,6 +173,7 @@ void pre_auton() {
       case 4:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Drive Forward");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Drive Forward");
         // leftUnderglow.set_all(0x0000FF);
         // rightUnderglow.set_all(0x0000FF);
@@ -177,6 +181,7 @@ void pre_auton() {
       case 5:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Left");
         // leftUnderglow.set_all(0x0000FF);
         // rightUnderglow.set_all(0x0000FF);
@@ -184,6 +189,7 @@ void pre_auton() {
       case 6:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Right");
         // leftUnderglow.set_all(0x0000FF);
         // rightUnderglow.set_all(0x0000FF);
@@ -191,6 +197,7 @@ void pre_auton() {
       case 7:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Solo AWP");
         // leftUnderglow.set_all(0x0000FF);
         // rightUnderglow.set_all(0x0000FF);
@@ -198,6 +205,7 @@ void pre_auton() {
       case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
+        Controller.Screen.clearScreen();
         Controller.Screen.print("Skills");
         // leftUnderglow.set_all(0x7CFC00);
         // rightUnderglow.set_all(0x7CFC00);
@@ -221,6 +229,11 @@ void pre_auton() {
 void autonomous(void) {
   auto_started = true;
 
+  // Display brain banner image on brain screen
+  brain_banner = lv_img_create(lv_scr_act());
+  lv_img_set_src(brain_banner, &brain_banner_344E);
+  lv_obj_set_size(brain_banner, 480, 240);
+  lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
 
   switch(current_auton_selection){ 
     case 0:
