@@ -196,48 +196,33 @@ void red_left(){
 void red_right(){
   odom_constants();
 
-  chassis.set_coordinates(46.5, 16.5, 270);
+  chassis.set_coordinates(52,18, 270);
 
+  chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
-
-  chassis.drive_to_point(12, 25);
-  chassis.drive_to_point(17, 23);
-  chassis.turn_to_angle(-135);
-
-  conveyor.stop();
-
-  chassis.drive_to_point(9, 20.5);
-
-  conveyor.spin(reverse, 12, volt);
+  chassis.drive_to_pose(23.287, 23, 250);
+  chassis.drive_max_voltage = 8;
 
   sylib::delay(1000);
-
-  chassis.drive_to_point(7, 18);
-
   conveyor.stop();
 
-  chassis.drive_to_point(32, 51);
+  chassis.drive_to_point(47, 47);
   chassis.turn_to_angle(90);
-
-  loaderToggle();
-
-  chassis.drive_to_point(55, 48);
-  conveyor.spin(forward, 12, volt);
-
-  sylib::delay(700);
-
-  conveyor.stop();
-
-  chassis.drive_to_point(10, 49);
+  chassis.drive_distance(-24);
 
   conveyor.spin(forward, 12, volt);
-
   scorer.spin(forward, 12, volt);
+  sylib::delay(2000);
+  conveyor.stop();
+  scorer.stop();
 
-  sylib::delay(2100);
+  chassis.drive_to_pose(47, 47, 270);
 
-  chassis.drive_to_point(27, 49.5);
-  chassis.drive_to_point(10, 49.5);
+  chassis.drive_to_point(37, 34);
+  
+  chassis.turn_to_angle(270);
+
+  chassis.drive_to_pose(11, 34, 270);
 
 }
 
