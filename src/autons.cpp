@@ -172,18 +172,17 @@ void red_left(){
   chassis.turn_to_angle(90);
   
   chassis.drive_max_voltage = 8;
-  chassis.drive_to_pose(63, -49, 90);
+  chassis.drive_to_pose(61, -50, 90);
   
   conveyor.spin(forward, 12, volt);
 
-  chassis.drive_distance(-2);
-
-  sylib::delay(1000);
+  sylib::delay(3000);
   conveyor.stop();
   loaderToggle();
 
+  chassis.drive_max_voltage = 4;
   //chassis.drive_to_pose(29, -52, 90);
-  chassis.drive_distance(-47);
+  chassis.drive_distance(-42);
 
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
@@ -203,10 +202,10 @@ void red_right(){
   chassis.drive_to_pose(23.287, 23, 250);
   chassis.drive_max_voltage = 8;
 
-  sylib::delay(1000);
-  conveyor.stop();
+  //sylib::delay(1000);
+  //conveyor.stop();
 
-  chassis.drive_to_point(47, 47);
+  chassis.drive_to_point(47, 49);
   chassis.turn_to_angle(90);
   chassis.drive_distance(-24);
 
@@ -216,13 +215,13 @@ void red_right(){
   conveyor.stop();
   scorer.stop();
 
-  chassis.drive_to_pose(47, 47, 270);
+  //chassis.drive_to_pose(47, 47, 270);
 
-  chassis.drive_to_point(37, 34);
+  //chassis.drive_to_point(37, 34);
   
-  chassis.turn_to_angle(270);
+  //chassis.turn_to_angle(270);
 
-  chassis.drive_to_pose(11, 34, 270);
+  //chassis.drive_to_pose(11, 36, 270);
 
 }
 
@@ -249,105 +248,108 @@ void skills(){
   odom_constants();
 
   // Deploy scraper mech
-  loaderToggle(); 
+  //loaderToggle(); 
   
-  // Set inital coordinates
-  chassis.set_coordinates(0, 0, 180); 
+  chassis.drive_max_voltage = 12;
+  chassis.drive_distance(20);
+
+  // // Set inital coordinates
+  // chassis.set_coordinates(0, 0, 180); 
   
-  // Drive to loader 1
-  chassis.drive_to_pose(0, 31.456, 270);
+  // // Drive to loader 1
+  // chassis.drive_to_pose(0, 31.456, 270);
 
-  // Line up with loader 1
-  chassis.drive_to_pose(11.543, 31.456, 270);
+  // // Line up with loader 1
+  // chassis.drive_to_pose(11.543, 31.456, 270);
 
-  // Empty loader 1
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
+  // // Empty loader 1
+  // conveyor.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
   
-  // Drive around goal 1
-  chassis.drive_to_pose(-11.254, 40.111, 110);
-  chassis.drive_to_pose(-42.131, 45.593, 90);
+  // // Drive around goal 1
+  // chassis.drive_to_pose(-11.254, 40.111, 110);
+  // chassis.drive_to_pose(-42.131, 45.593, 90);
   
-  chassis.drive_to_pose(-97.824, 32.319, 270);
+  // chassis.drive_to_pose(-97.824, 32.319, 270);
   
-  // Line up with goal 1
-  chassis.drive_to_pose(-77.336, 31.456, 90);
+  // // Line up with goal 1
+  // chassis.drive_to_pose(-77.336, 31.456, 90);
 
-  // Score load 1
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
-  scorer.stop();
+  // // Score load 1
+  // conveyor.spin(forward, 12, volt);
+  // scorer.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
+  // scorer.stop();
 
-  // Line up with loader 2
-  chassis.drive_to_pose(-111.964, 31.456, 90);
+  // // Line up with loader 2
+  // chassis.drive_to_pose(-111.964, 31.456, 90);
 
-  // Empty loader 2
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
+  // // Empty loader 2
+  // conveyor.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
   
-  // Line back up with goal 1
-  chassis.drive_to_pose(-77.336, 31.456, 270);
+  // // Line back up with goal 1
+  // chassis.drive_to_pose(-77.336, 31.456, 270);
 
-  // Score load 2
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
-  scorer.stop();
+  // // Score load 2
+  // conveyor.spin(forward, 12, volt);
+  // scorer.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
+  // scorer.stop();
 
-  // Drive to loader 3
-  chassis.drive_to_pose(-87.147, -2.02, 10);
+  // // Drive to loader 3
+  // chassis.drive_to_pose(-87.147, -2.02, 10);
 
-  // Line up with loader 3
-  chassis.drive_to_pose(-110.809, -62.33, 90);
+  // // Line up with loader 3
+  // chassis.drive_to_pose(-110.809, -62.33, 90);
 
-  // Empty loader 3
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
+  // // Empty loader 3
+  // conveyor.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
   
-  // Drive to goal 2
-  chassis.drive_to_pose(-66.082, -77.624, 270);
-  chassis.drive_to_pose(0, -62.33, 270);
+  // // Drive to goal 2
+  // chassis.drive_to_pose(-66.082, -77.624, 270);
+  // chassis.drive_to_pose(0, -62.33, 270);
   
-  // Line up with goal 2
-  chassis.drive_to_pose(-22.797, -62.33, 270);
+  // // Line up with goal 2
+  // chassis.drive_to_pose(-22.797, -62.33, 270);
 
-  // Score load 3
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
-  scorer.stop();
+  // // Score load 3
+  // conveyor.spin(forward, 12, volt);
+  // scorer.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
+  // scorer.stop();
 
-  // Line up with loader 4
-  chassis.drive_to_pose(11.254, -61.753, 270);
+  // // Line up with loader 4
+  // chassis.drive_to_pose(11.254, -61.753, 270);
 
-  // Empty loader 4
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
+  // // Empty loader 4
+  // conveyor.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
   
-  // Line back up with goal 2
-  chassis.drive_to_pose(-23.374, -62.042, 270);
+  // // Line back up with goal 2
+  // chassis.drive_to_pose(-23.374, -62.042, 270);
 
-  // Score load 4
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(500);
-  conveyor.stop();
-  scorer.stop();
+  // // Score load 4
+  // conveyor.spin(forward, 12, volt);
+  // scorer.spin(forward, 12, volt);
+  // sylib::delay(500);
+  // conveyor.stop();
+  // scorer.stop();
 
-  // Line up for park
-  chassis.drive_to_pose(12.985, -41.842, 180);
+  // // Line up for park
+  // chassis.drive_to_pose(12.985, -41.842, 180);
 
-  // Retract scraper mech
-  loaderToggle();
+  // // Retract scraper mech
+  // loaderToggle();
 
-  // Park
-  chassis.drive_to_pose(12.985, -17.314, 180);
+  // // Park
+  // chassis.drive_to_pose(12.985, -17.314, 180);
 }
