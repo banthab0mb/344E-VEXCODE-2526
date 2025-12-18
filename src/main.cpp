@@ -15,9 +15,6 @@ competition Competition;
 lv_obj_t* brain_banner;
 LV_IMG_DECLARE(brain_banner_344E);
 
-// auto leftUnderglow = sylib::Addrled(22, 7, 60);
-// auto rightUnderglow = sylib::Addrled(22, 8, 60);
-
 // Chassis constructor
 
 // robor
@@ -130,11 +127,7 @@ void pre_auton() {
     Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
     Brain.Screen.printAt(5, 120, "Selected Auton:");
 
-    // underglow rainbow cycle
-    // leftUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-    // leftUnderglow.cycle(*leftUnderglow, 10);
-    // rightUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-    // rightUnderglow.cycle(*rightUnderglow, 10);
+    rainbow();
 
     // auton selector
     switch(current_auton_selection){
@@ -143,72 +136,63 @@ void pre_auton() {
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Red Drive Forward");
-        // leftUnderglow.set_all(0xFF0000);
-        // rightUnderglow.set_all(0xFF0000);
+        setRed();
         break;
       case 1:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Red Left");
-        // leftUnderglow.set_all(0xFF0000);
-        // rightUnderglow.set_all(0xFF0000);
+        setRed();
         break;
       case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Red Right");
-        // leftUnderglow.set_all(0xFF0000);
-        // rightUnderglow.set_all(0xFF0000);
+        setRed();
         break;
       case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Red Solo AWP");
-        // leftUnderglow.set_all(0xFF0000);
-        // rightUnderglow.set_all(0xFF0000);
+        setRed();
         break;
       case 4:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Drive Forward");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Drive Forward");
-        // leftUnderglow.set_all(0x0000FF);
-        // rightUnderglow.set_all(0x0000FF);
+        setBlue();
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Left");
-        // leftUnderglow.set_all(0x0000FF);
-        // rightUnderglow.set_all(0x0000FF);
+        setBlue();
         break;
       case 6:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Right");
-        // leftUnderglow.set_all(0x0000FF);
-        // rightUnderglow.set_all(0x0000FF);
+        setBlue();
         break;
       case 7:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Blue Solo AWP");
-        // leftUnderglow.set_all(0x0000FF);
-        // rightUnderglow.set_all(0x0000FF);
+        setBlue();
         break;
       case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
         Controller.Screen.clearScreen();
         Controller.Screen.print("Skills");
-        // leftUnderglow.set_all(0x7CFC00);
-        // rightUnderglow.set_all(0x7CFC00);
+        setGreen();
         break;
     }
     if(Brain.Screen.pressing()){
@@ -300,12 +284,9 @@ void userWingsToggle() {
 
 void usercontrol(void) {
   
-  /* if (auto_started == false) {
-    leftUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-    leftUnderglow.cycle(*leftUnderglow, 10);
-    rightUnderglow.gradient(0xFF0000, 0xFF0005, 0, 0, false, true);
-    rightUnderglow.cycle(*rightUnderglow, 10);
-  } */
+  if (auto_started == false) {
+    rainbow();
+  }
 
   auto_started = true;
 
@@ -329,6 +310,8 @@ void usercontrol(void) {
     //chassis.control_arcade(); // Standard arcade with deadband
 
     exponential(); // Exponential drive
+
+    cheesy(); // Cheesy Drive
 
     // Motor controls
     conveyorControl();
