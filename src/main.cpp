@@ -295,9 +295,9 @@ void usercontrol(void) {
 
     //chassis.control_arcade(); // Standard arcade with deadband
 
-    // exponential(); // Exponential drive
+    exponential(); // Exponential drive
 
-    cheesy(); // Cheesy Drive
+    // cheesy(); // Cheesy Drive
 
     // Motor controls
     conveyorControl();
