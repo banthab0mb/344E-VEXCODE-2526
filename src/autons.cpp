@@ -170,23 +170,26 @@ void red_left(){
   chassis.drive_max_voltage = 4;
   chassis.drive_distance(-30);
 
-  conveyor.spin(reverse, 12, volt);
-  sylib::delay(250);
-  conveyor.stop();
-
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
-  sylib::delay(5000);
+  sylib::delay(2500);
+  conveyor.spin(reverse, 12, volt);
+  sylib::delay(250);
+  conveyor.spin(forward, 12, volt);
+  sylib::delay(2500);
+  conveyor.spin(reverse, 12, volt);
+  sylib::delay(250);
+  conveyor.spin(forward, 12, volt);
   loaderToggle();
+  sylib::delay(5000);
   conveyor.stop();
   scorer.stop();
-  leftMiddle.stop();
-  rightMiddle.stop();
 }
 
 // Auton for red right start
 void red_right(){
-  odom_constants();
+  //4 Block Push
+  /*odom_constants();
 
   chassis.set_coordinates(52,18, 270);
 
@@ -215,7 +218,49 @@ void red_right(){
   //chassis.turn_to_angle(270);
 
   //chassis.drive_to_pose(11, 36, 270);
+ */
+ odom_constants();
 
+  wingsToggle();
+
+  chassis.set_coordinates(52,-18, 270);
+
+  chassis.drive_max_voltage = 4;
+  conveyor.spin(forward, 12, volt);
+  chassis.drive_to_pose(23.287, -13, 250);
+  chassis.drive_max_voltage = 8;
+
+  sylib::delay(1000);
+  conveyor.stop();
+
+  chassis.turn_to_angle(90);
+  loaderToggle();
+  
+  chassis.drive_max_voltage = 8;
+  chassis.drive_to_pose(62, 11, 90);
+  
+  conveyor.spin(forward, 12, volt);
+
+  sylib::delay(1200);
+  conveyor.stop();
+
+  chassis.drive_max_voltage = 4;
+  chassis.drive_distance(-30);
+
+  conveyor.spin(forward, 12, volt);
+  scorer.spin(forward, 12, volt);
+  sylib::delay(2500);
+  conveyor.spin(reverse, 12, volt);
+  sylib::delay(250);
+  conveyor.spin(forward, 12, volt);
+  sylib::delay(2500);
+  conveyor.spin(reverse, 12, volt);
+  sylib::delay(250);
+  conveyor.spin(forward, 12, volt);
+  loaderToggle();
+  sylib::delay(5000);
+  conveyor.stop();
+  scorer.stop();
 }
 
 /** 
