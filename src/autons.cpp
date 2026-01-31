@@ -170,6 +170,10 @@ void red_left(){
   chassis.drive_max_voltage = 4;
   chassis.drive_distance(-30);
 
+  conveyor.spin(reverse, 12, volt);
+  sylib::delay(250);
+  conveyor.stop();
+
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
   sylib::delay(5000);
