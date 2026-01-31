@@ -156,39 +156,28 @@ void red_left(){
   sylib::delay(1000);
   conveyor.stop();
 
-  chassis.turn_to_angle(150);
-  chassis.drive_to_point(7.836, -6.074);
-
-  trapdoorToggle();
-
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(3000);
-  conveyor.stop();
-  scorer.stop();
-
-  trapdoorToggle();
-  loaderToggle();
   chassis.turn_to_angle(90);
+  loaderToggle();
   
   chassis.drive_max_voltage = 8;
-  chassis.drive_to_pose(61, -50, 90);
+  chassis.drive_to_pose(62, -47, 90);
   
   conveyor.spin(forward, 12, volt);
 
-  sylib::delay(3000);
+  sylib::delay(1200);
   conveyor.stop();
-  loaderToggle();
 
   chassis.drive_max_voltage = 4;
-  //chassis.drive_to_pose(29, -52, 90);
-  chassis.drive_distance(-42);
+  chassis.drive_distance(-30);
 
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
   sylib::delay(5000);
+  loaderToggle();
   conveyor.stop();
   scorer.stop();
+  leftMiddle.stop();
+  rightMiddle.stop();
 }
 
 // Auton for red right start
