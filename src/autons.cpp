@@ -78,57 +78,59 @@ void drive_forward(){
 // Solo AWP on red side
 void red_solo_awp(){
   odom_constants();
+  chassis.set_coordinates(0,0,0);
+  chassis.drive_to_point(0,)
 
-  chassis.set_coordinates(46.5, -16.5, 180);
-	chassis.drive_to_point(45, -34);
-	chassis.left_swing_to_angle(700);
+  // chassis.set_coordinates(46.5, -16.5, 180);
+	// chassis.drive_to_point(45, -34);
+	// chassis.left_swing_to_angle(700);
 	
-	loaderToggle();
-	trapdoorToggle();
-	sylib::delay(250);
-	chassis.drive_to_point(54, -53);
-	conveyor.spin(forward, 12, volt);
+	// loaderToggle();
+	// trapdoorToggle();
+	// sylib::delay(250);
+	// chassis.drive_to_point(54, -53);
+	// conveyor.spin(forward, 12, volt);
 	
-	sylib::delay(250);
-	chassis.drive_to_point(17, -54);
+	// sylib::delay(250);
+	// chassis.drive_to_point(17, -54);
 	
-	scorer.spin(forward, 12, volt);
-	sylib::delay(800);
-	scorer.stop();
-	loaderToggle();
-	chassis.left_swing_to_angle(-45);
-	chassis.drive_to_point(20, -30);
-	chassis.turn_to_angle(135);
+	// scorer.spin(forward, 12, volt);
+	// sylib::delay(800);
+	// scorer.stop();
+	// loaderToggle();
+	// chassis.left_swing_to_angle(-45);
+	// chassis.drive_to_point(20, -30);
+	// chassis.turn_to_angle(135);
 	
-	sylib::delay(20);
-	chassis.drive_to_point(0, -14);
+	// sylib::delay(20);
+	// chassis.drive_to_point(0, -14);
 	
-	scorer.spin(forward, 7.56, volt);
-	conveyor.spin(forward, 9, volt);
-	trapdoorToggle();
-	sylib::delay(700);
-	scorer.stop();
-	chassis.drive_to_point(13, -24);
-	trapdoorToggle();
-	chassis.turn_to_angle(0);
-	chassis.drive_to_point(16.5, 10);
-	chassis.turn_to_angle(80);
-	chassis.drive_to_point(35, 39.2);
-	chassis.turn_to_angle(90);
+	// scorer.spin(forward, 7.56, volt);
+	// conveyor.spin(forward, 9, volt);
+	// trapdoorToggle();
+	// sylib::delay(700);
+	// scorer.stop();
+	// chassis.drive_to_point(13, -24);
+	// trapdoorToggle();
+	// chassis.turn_to_angle(0);
+	// chassis.drive_to_point(16.5, 10);
+	// chassis.turn_to_angle(80);
+	// chassis.drive_to_point(35, 39.2);
+	// chassis.turn_to_angle(90);
 	
-	loaderToggle();
-	sylib::delay(180);
-	chassis.drive_to_point(55, 40);
-	conveyor.spin(forward, 12, volt);
+	// loaderToggle();
+	// sylib::delay(180);
+	// chassis.drive_to_point(55, 40);
+	// conveyor.spin(forward, 12, volt);
 	
-	sylib::delay(570);
-	conveyor.stop();
-	chassis.drive_to_point(9, 44.5);
+	// sylib::delay(570);
+	// conveyor.stop();
+	// chassis.drive_to_point(9, 44.5);
 	
-	conveyor.spin(forward, 12, volt);
-	scorer.spin(forward, 12, volt);
-	sylib::delay(700);
-	chassis.drive_to_point(25, 44.5);
+	// conveyor.spin(forward, 12, volt);
+	// scorer.spin(forward, 12, volt);
+	// sylib::delay(700);
+	// chassis.drive_to_point(25, 44.5);
 }
 
 /** 
