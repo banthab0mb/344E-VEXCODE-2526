@@ -1,6 +1,6 @@
 #include "vex.h"
-#include "v5lvgl.h"
 #include "sylib/sylib.hpp"
+#include "images/brain_banner.h"
 #include <cmath>
 #include <cstdint>
 #include <string>
@@ -10,10 +10,6 @@ using namespace vex;
 competition Competition;
 
 // Declare stuff that cant live in robot-config.cpp
-
-// Create lvgl object for the brain banner image
-lv_obj_t* brain_banner;
-LV_IMG_DECLARE(brain_banner_344E);
 
 // Chassis constructor
 
@@ -197,10 +193,7 @@ void autonomous(void) {
   auto_started = true;
 
   // Display brain banner image on brain screen
-  brain_banner = lv_img_create(lv_scr_act());
-  lv_img_set_src(brain_banner, &brain_banner_344E);
-  lv_obj_set_size(brain_banner, 480, 240);
-  lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
+  Brain.Screen.drawImageFromBuffer((uint8_t*)brain_banner, 0, 0, sizeof(brain_banner));
 
   switch(current_auton_selection){ 
     case 0:
@@ -277,10 +270,8 @@ void usercontrol(void) {
   auto_started = true;
 
   // Display brain banner image on brain screen
-  brain_banner = lv_img_create(lv_scr_act());
-  lv_img_set_src(brain_banner, &brain_banner_344E);
-  lv_obj_set_size(brain_banner, 480, 240);
-  lv_obj_align(brain_banner, LV_ALIGN_CENTER, 0, 0);
+
+  Brain.Screen.drawImageFromBuffer((uint8_t*)brain_banner, 0, 0, sizeof(brain_banner));
 
   // Controller button callbacks
   Controller.ButtonDown.pressed(userLoaderToggle);
@@ -312,8 +303,6 @@ void usercontrol(void) {
 // No touchy
 //
 int main() {
-  // init lvgl
-  v5_lv_init();
 
   // init sylib
   sylib::initialize();

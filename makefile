@@ -11,9 +11,6 @@ SRC_C  = $(wildcard src/*.cpp)
 SRC_C += $(wildcard src/*.c)
 SRC_C += $(wildcard src/*/*.cpp) 
 SRC_C += $(wildcard src/*/*.c)
-SRC_C += $(wildcard lvgl/src/*/*.c) 
-SRC_C += $(wildcard lvgl/src/*/*/*.c) 
-SRC_C += $(wildcard lvgl/src/*/*/*/*.c) 
 
 OBJ = $(addprefix $(BUILD)/, $(addsuffix .o, $(basename $(SRC_C))) )
 
@@ -24,9 +21,7 @@ SRC_H  = $(wildcard include/*.h)
 SRC_A  = makefile
 
 # project header file locations
-INC_F  = include . lvgl lvgl/src
-
-vpath %.h lvgl/ include/
+INC_F  = include
 
 # build targets
 all: $(BUILD)/$(PROJECT).bin
