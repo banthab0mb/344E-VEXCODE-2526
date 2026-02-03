@@ -7,6 +7,9 @@ auto rightUnderglow = sylib::Addrled(22, 8, 60);
 int colorRed = 0xFF0000;
 int colorBlue = 0x0000FF;
 int colorGreen = 0x7CFC00;
+int colorPink = 0xFF00FF;
+
+bool PINK = false;
 
 void rainbow() {
     // underglow rainbow cycle
@@ -16,17 +19,12 @@ void rainbow() {
     rightUnderglow.cycle(*rightUnderglow, 10);
 }
 
-void setRed() {
-    leftUnderglow.set_all(colorRed);
-    rightUnderglow.set_all(colorRed);
-}
-
-void setBlue() {
-    leftUnderglow.set_all(colorBlue);
-    rightUnderglow.set_all(colorBlue);
-}
-
-void setGreen() {
-    leftUnderglow.set_all(colorGreen);
-    rightUnderglow.set_all(colorGreen);
+void setUnderglow(uint32_t input) {
+    if (PINK) {
+        leftUnderglow.set_all(0xFF00FF);
+        rightUnderglow.set_all(0xFF00FF);
+    } else {
+        leftUnderglow.set_all(input);
+        rightUnderglow.set_all(input);
+    }
 }

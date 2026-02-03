@@ -131,47 +131,47 @@ void pre_auton() {
       case 0:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
-        setRed();
+        setUnderglow(colorRed);
         break;
       case 1:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
-        setRed();
+        setUnderglow(colorRed);
         break;
       case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
-        setRed();
+        setUnderglow(colorRed);
         break;
       case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
-        setRed();
+        setUnderglow(colorRed);
         break;
       case 4:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Drive Forward");
-        setBlue();
+        setUnderglow(colorBlue);
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
-        setBlue();
+        setUnderglow(colorBlue);
         break;
       case 6:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
-        setBlue();
+        setUnderglow(colorBlue);
         break;
       case 7:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
-        setBlue();
+        setUnderglow(colorBlue);
         break;
       case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
-        setGreen();
+        setUnderglow(colorGreen);
         break;
     }
     if(Brain.Screen.pressing()){
