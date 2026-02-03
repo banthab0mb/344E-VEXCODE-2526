@@ -113,7 +113,7 @@ void pre_auton() {
   park.set(false);
 
   // Vibrate controller when init is done
-  Controller.rumble("--");
+  Controller.rumble("-");
 
   while(!auto_started){
     
@@ -224,36 +224,6 @@ void autonomous(void) {
       skills();
       break;
  }
-}
-
-// Pneumatic toggles
-
-bool userLoaderState = false;
-// Toggle for loader
-void userLoaderToggle() {
-  userLoaderState = !userLoaderState;
-  matchLoader.set(userLoaderState);
-}
-
-bool userParkState = false;
-// Toggle for double park
-void userParkToggle() {
-  userParkState = !userParkState;
-  park.set(userParkState);
-}
-
-bool userTrapdoorState = false;
-// Toggle for trapdoor
-void userTrapdoorToggle() {
-  userTrapdoorState = !userTrapdoorState;
-  trapdoor.set(userTrapdoorState);
-}
-
-bool userWingsState = false;
-// Toggle for wings
-void userWingsToggle() {
-  userWingsState = !userWingsState;
-  wings.set(userWingsState);
 }
 
 // User Control Task
