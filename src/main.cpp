@@ -284,9 +284,9 @@ void usercontrol(void) {
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
 
-    chassis.control_arcade(); // Standard arcade with deadband
+    //chassis.control_arcade(); // Standard arcade with deadband
 
-    // exponential(); // Exponential drive
+    exponential(); // Exponential drive
 
     // cheesy(); // Cheesy Drive
 
