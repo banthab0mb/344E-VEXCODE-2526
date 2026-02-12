@@ -1,13 +1,8 @@
 #include "leds.h"
 #include "sylib/sylib.hpp"
 
-auto leftUnderglow = sylib::Addrled(22, 7, 60);
-auto rightUnderglow = sylib::Addrled(22, 8, 60);
-
-int colorRed = 0xFF0000;
-int colorBlue = 0x0000FF;
-int colorGreen = 0x7CFC00;
-int colorPink = 0xFF00FF;
+auto leftUnderglow = sylib::Addrled(22, 7, 11);
+auto rightUnderglow = sylib::Addrled(22, 8, 11);
 
 bool PINK = false;
 

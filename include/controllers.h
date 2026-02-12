@@ -3,7 +3,6 @@
 void curvatureDrive(double forward, double curvature);
 void updateCurvatureDrive();
 
-void exponential();
+void cubic();
 
-std::pair<double, double> cheesyDrive(double ithrottle, double iturn);
-void cheesy();
+void quadratic();

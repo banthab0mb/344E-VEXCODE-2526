@@ -95,11 +95,15 @@ void red_solo_awp(){
 
   chassis.set_coordinates(47.78, 16.75, 0);
 
-  chassis.drive_to_point(40.859, 39.799);
+  chassis.drive_to_point(47, 46);
 
   loaderToggle();
 
-  chassis.drive_to_pose(57.566, 46.424, 90);
+  //chassis.drive_to_pose(57.566, 47, 90);
+
+  chassis.turn_to_angle(90);
+
+  chassis.drive_distance(12);
 
   conveyor.spin(forward, 12, volt);
   sylib::delay(1200);

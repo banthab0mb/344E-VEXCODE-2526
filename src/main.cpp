@@ -131,47 +131,47 @@ void pre_auton() {
       case 0:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
-        setUnderglow(colorRed);
+        setUnderglow(0xFF0000);
         break;
       case 1:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
-        setUnderglow(colorRed);
+        setUnderglow(0xFF0000);
         break;
       case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
-        setUnderglow(colorRed);
+        setUnderglow(0xFF0000);
         break;
       case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
-        setUnderglow(colorRed);
+        setUnderglow(0xFF0000);
         break;
       case 4:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Drive Forward");
-        setUnderglow(colorBlue);
+        setUnderglow(0x0000FF);
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
-        setUnderglow(colorBlue);
+        setUnderglow(0x0000FF);
         break;
       case 6:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
-        setUnderglow(colorBlue);
+        setUnderglow(0x0000FF);
         break;
       case 7:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
-        setUnderglow(colorBlue);
+        setUnderglow(0x0000FF);
         break;
       case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
-        setUnderglow(colorGreen);
+        setUnderglow(0x7CFC00);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -232,8 +232,8 @@ void usercontrol(void) {
   
   // Set underglow to rainbow if no autonomous has run
   // This makes sure the colors set in auto stay
-  if (auto_started == false) {
-    rainbow();
+  if (!Competition.isFieldControl() && auto_started == false) {
+     rainbow();
   }
 
   // Tells the brain screen printing in preAuton() to stop
@@ -256,9 +256,9 @@ void usercontrol(void) {
 
     //chassis.control_arcade(); // Standard arcade with deadband
 
-    exponential(); // Exponential drive
+    //cubic(); // Cubic drive
 
-    // cheesy(); // Cheesy Drive
+    quadratic(); // Quadratic drive
 
     // Motor controls
     conveyorControl();
