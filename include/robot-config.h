@@ -23,7 +23,7 @@ extern motor rightBack;
 // Devices
 
 extern motor conveyor;
-extern motor conveyor2
+extern motor conveyor2;
 extern motor scorer;
 
 extern digital_out matchLoader;
