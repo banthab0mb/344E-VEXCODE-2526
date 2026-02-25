@@ -106,6 +106,7 @@ void red_solo_awp(){
   chassis.drive_distance(12);
 
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   sylib::delay(1200);
   conveyor.stop();
 
@@ -116,14 +117,19 @@ void red_solo_awp(){
   //score
   conveyor.spin(forward, 12, volt);
   scorer.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   sylib::delay(1500);
   conveyor.spin(reverse, 12, volt);
+  conveyor2.spin(reverse, 200, rpm);
   sylib::delay(150);
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   sylib::delay(1500);
   conveyor.spin(reverse, 12, volt);
+  conveyor2.spin(reverse, 200, rpm);
   sylib::delay(150);
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   scorer.stop();
 
   chassis.drive_distance(5);
@@ -142,8 +148,10 @@ void red_solo_awp(){
 
   scorer.spin(forward, 12, volt);
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   sylib::delay(1500);
   conveyor.stop();
+  conveyor2.stop();
   scorer.stop();
 
   loaderToggle();
@@ -240,11 +248,13 @@ void red_left(){
 
   chassis.drive_max_voltage = 5;
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   chassis.drive_to_pose(20, 13.6, 270);
   chassis.drive_max_voltage = 8;
 
   sylib::delay(1000);
   conveyor.stop();
+  conveyor2.stop();
 
   chassis.drive_to_point(46, -12.4);
   chassis.turn_to_angle(90);
@@ -253,9 +263,11 @@ void red_left(){
   chassis.drive_distance(-26);
 
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 12, volt);
   sylib::delay(2000);
   conveyor.stop();
+  conveyor2.stop();
   scorer.stop();
 
   /*wingsToggle();
@@ -309,11 +321,13 @@ void red_right(){
 
   chassis.drive_max_voltage = 5;
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   chassis.drive_to_pose(20, 20, 270);
   chassis.drive_max_voltage = 8;
 
   sylib::delay(1000);
   conveyor.stop();
+  conveyor2.stop();
 
   chassis.drive_to_point(46, 50);
   chassis.turn_to_angle(90);
@@ -322,9 +336,11 @@ void red_right(){
   chassis.drive_distance(-26);
 
   conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 12, volt);
   sylib::delay(2000);
   conveyor.stop();
+  conveyor2.stop();
   scorer.stop();
 
   chassis.drive_max_voltage = 8;

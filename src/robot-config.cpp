@@ -15,17 +15,17 @@ controller Controller;
 //motor LeftFront = motor(PORT1, ratio6_1, false);
 
 motor leftFront = motor(PORT11, ratio6_1, true);
-motor leftMiddle = motor(PORT12, ratio6_1, false);
+motor leftMiddle = motor(PORT12, ratio6_1, true);
 motor leftBack = motor(PORT13, ratio6_1, true);
 motor rightFront = motor(PORT14, ratio6_1, false);
-motor rightMiddle = motor(PORT15, ratio6_1, true);
+motor rightMiddle = motor(PORT15, ratio6_1, false);
 motor rightBack = motor(PORT16, ratio6_1, false);
 
 // Other devices
 
-motor conveyor = motor(PORT11, ratio6_1, false);
-motor conveyor2 = motor(PORT20, ratio18_1, false);
-motor scorer = motor(PORT12, ratio6_1, true);
+motor conveyor = motor(PORT17, ratio6_1, false);
+motor conveyor2 = motor(PORT18, ratio18_1, false);
+motor scorer = motor(PORT19, ratio6_1, true);
 
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
@@ -47,7 +47,7 @@ void conveyorControl() {
     conveyor.spin(reverse, 12, volt);
     conveyor2.spin(reverse, 200, rpm);
   } else {
-    conveyor.stop();
+    conveyor.stop(coast);
     conveyor2.stop();
   }
 }
