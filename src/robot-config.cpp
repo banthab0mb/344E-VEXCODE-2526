@@ -64,7 +64,7 @@ void scorerControl() {
     scorer.spin(reverse, 200, rpm);
   } else {
     if (noConveyor) {
-      scorer.stop(hold);
+      scorer.stop(brake);
     }
   }
 }
