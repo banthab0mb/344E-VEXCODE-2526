@@ -25,7 +25,7 @@ motor rightBack = motor(PORT16, ratio6_1, false);
 
 motor conveyor = motor(PORT17, ratio6_1, false);
 motor conveyor2 = motor(PORT18, ratio18_1, false);
-motor scorer = motor(PORT19, ratio6_1, true);
+motor scorer = motor(PORT20, ratio18_1, true);
 
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
 digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
@@ -38,17 +38,21 @@ void vexcodeInit( void ) {
   // nothing to initialize
 }
 
+bool noConveyor = true;
 // Control for conveyor
 void conveyorControl() {
   if(Controller.ButtonR1.pressing()) {
     conveyor.spin(forward, 12, volt);
     conveyor2.spin(forward, 200, rpm);
+    noConveyor = false;
+    scorer.spin(forward, 85, rpm);
   } else if(Controller.ButtonR2.pressing()) {
     conveyor.spin(reverse, 12, volt);
     conveyor2.spin(reverse, 200, rpm);
   } else {
     conveyor.stop(coast);
-    conveyor2.stop();
+    conveyor2.stop(coast);
+    noConveyor = true;
   }
 }
 
@@ -59,7 +63,9 @@ void scorerControl() {
   } else if(Controller.ButtonL2.pressing()) {
     scorer.spin(reverse, 200, rpm);
   } else {
-    scorer.stop();
+    if (noConveyor) {
+      scorer.stop(hold);
+    }
   }
 }
 
