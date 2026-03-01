@@ -31,6 +31,8 @@ extern digital_out trapdoor;
 extern digital_out park;
 extern digital_out wings;
 
+extern distance parkSensor;
+
 // Function
 
 void vexcodeInit( void );

@@ -32,6 +32,8 @@ digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
 digital_out park = digital_out(Brain.ThreeWirePort.D);
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
 
+distance parkSensor = distance(PORT4);
+
 // Functions
 
 void vexcodeInit( void ) {
@@ -79,9 +81,13 @@ void userLoaderToggle() {
 }
 
 bool userParkState = false;
-// Toggle for double park
+// Macro for double park
 void userParkToggle() {
   userParkState = !userParkState;
+  while (!parkSensor.isObjectDetected()) {
+    conveyor.spin(reverse, 12, volt);
+    conveyor2.spin(reverse, 200, rpm);
+  }
   park.set(userParkState);
 }
 
