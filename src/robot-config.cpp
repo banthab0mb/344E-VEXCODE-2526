@@ -64,7 +64,7 @@ bool userHoodState = false;
 // Toggle for hood
 void userHoodToggle() {
   userHoodState = !userHoodState;
-  hood.set(userhoodState);
+  hood.set(userHoodState);
 }
 
 // Control for scorer

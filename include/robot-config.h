@@ -46,3 +46,4 @@ void userLoaderToggle();
 void userHoodToggle();
 void userWingsToggle();
 void userParkToggle();
+void userIntakeToggle();
