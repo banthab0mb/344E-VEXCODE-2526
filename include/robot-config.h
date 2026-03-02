@@ -19,6 +19,7 @@ extern motor leftBack;
 extern motor rightFront;
 extern motor rightMiddle;
 extern motor rightBack;
+extern motor_group wholeDrivetrain;
 
 // Devices
 
