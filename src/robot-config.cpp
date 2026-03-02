@@ -60,12 +60,25 @@ void conveyorControl() {
   }
 }
 
+bool userHoodState = false;
+// Toggle for hood
+void userHoodToggle() {
+  userHoodState = !userHoodState;
+  hood.set(userhoodState);
+}
+
 // Control for scorer
 void scorerControl() {
   if(Controller.ButtonL1.pressing()) {
     scorer.spin(forward, 200, rpm);
+    if (!userHoodState) {
+      userHoodToggle();
+    }
   } else if(Controller.ButtonL2.pressing()) {
     scorer.spin(reverse, 200, rpm);
+    if (userHoodState) {
+      userHoodToggle();
+    }
   } else {
     if (noConveyor) {
       scorer.stop();
@@ -91,13 +104,6 @@ void userParkToggle() {
     conveyor2.spin(reverse, 200, rpm);
   }
   park.set(userParkState);
-}
-
-bool userHoodState = false;
-// Toggle for hood
-void userHoodToggle() {
-  userHoodState = !userHoodState;
-  hood.set(userhoodState);
 }
 
 bool userWingsState = false;
