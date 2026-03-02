@@ -90,144 +90,85 @@ chassis.moveTo(61.311, -48.636, 5000);
 */
 // Solo AWP on red side
 void red_solo_awp(){
+  // win point auto, 
   odom_constants();
 
+  chassis.set_coordinates(-46.274, -14.764, 0);
+  chassis.drive_max_voltage = 8;
+  parkToggle();
 
-  chassis.set_coordinates(47.78, 16.75, 0);
-
-  chassis.drive_to_point(47, 46);
-
-  loaderToggle();
-
-  //chassis.drive_to_pose(57.566, 47, 90);
-
-  chassis.turn_to_angle(90);
-
-  chassis.drive_distance(12);
-
+  chassis.drive_to_pose(-46.561, -46.859, 0);
+  chassis.turn_to_angle(270);
+  loaderToggle(); //loader down
+  chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
-  sylib::delay(1200);
-  conveyor.stop();
-
-  chassis.drive_distance(-30);
-
-  loaderToggle();
-
-  //score
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  sylib::delay(1500);
-  conveyor.spin(reverse, 12, volt);
-  conveyor2.spin(reverse, 200, rpm);
-  sylib::delay(150);
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  sylib::delay(1500);
-  conveyor.spin(reverse, 12, volt);
-  conveyor2.spin(reverse, 200, rpm);
-  sylib::delay(150);
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  scorer.stop();
-
-  chassis.drive_distance(5);
-
-  chassis.drive_to_pose(35.674, 33.461, 215);
-
-  // first 3 stack
-  chassis.drive_to_pose(22.999, 21.939, 180);
-  // second 3 stack
-  chassis.drive_to_pose(22.711, -22.999, 180);
-  sylib::delay(1200);
-
-  chassis.drive_to_pose(8.884, -9.748, 315);
-
-  hoodToggle();
-
-  scorer.spin(forward, 12, volt);
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  sylib::delay(1500);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-59.169, -47.145, 270); //at loader
+  wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-
-  loaderToggle();
-
-  chassis.drive_to_pose(61.311, -48.636, 90);
-
+  chassis.drive_to_pose(-31.086, -47.145, 270); // at long goal
   conveyor.spin(forward, 12, volt);
-  sylib::delay(1200);
+  conveyor2.spin(forward, 200, rpm);
+  loaderToggle(); //loader up
+  hoodToggle(); //hood up
+  scorer.spin(forward, 200, rpm);
+  wait(1000, msec); //unloading time
+  hoodToggle(); // hood down
+  chassis.drive_to_pose(-32.233, -33.39, 75);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-13.319, -28.519, 75);
+  chassis.turn_to_angle(300);
+  chassis.drive_to_pose(-30.227, -15.91, 300); // pick up 3 stack
   conveyor.stop();
-
-  chassis.drive_distance(-30);
-
-  //score
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(1500);
-  conveyor.spin(reverse, 12, volt);
-  sylib::delay(150);
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(1500);
-  conveyor.spin(reverse, 12, volt);
-  sylib::delay(150);
-  conveyor.spin(forward, 12, volt);
-  conveyor.stop();
+  conveyor2.stop();
   scorer.stop();
-
-  // chassis.set_coordinates(46.5, -16.5, 180);
-	// chassis.drive_to_point(45, -34);
-	// chassis.left_swing_to_angle(700);
-	
-	// loaderToggle();
-	// hoodToggle();
-	// sylib::delay(250);
-	// chassis.drive_to_point(54, -53);
-	// conveyor.spin(forward, 12, volt);
-	
-	// sylib::delay(250);
-	// chassis.drive_to_point(17, -54);
-	
-	// scorer.spin(forward, 12, volt);
-	// sylib::delay(800);
-	// scorer.stop();
-	// loaderToggle();
-	// chassis.left_swing_to_angle(-45);
-	// chassis.drive_to_point(20, -30);
-	// chassis.turn_to_angle(135);
-	
-	// sylib::delay(20);
-	// chassis.drive_to_point(0, -14);
-	
-	// scorer.spin(forward, 7.56, volt);
-	// conveyor.spin(forward, 9, volt);
-	// hoodToggle();
-	// sylib::delay(700);
-	// scorer.stop();
-	// chassis.drive_to_point(13, -24);
-	// hoodToggle();
-	// chassis.turn_to_angle(0);
-	// chassis.drive_to_point(16.5, 10);
-	// chassis.turn_to_angle(80);
-	// chassis.drive_to_point(35, 39.2);
-	// chassis.turn_to_angle(90);
-	
-	// loaderToggle();
-	// sylib::delay(180);
-	// chassis.drive_to_point(55, 40);
-	// conveyor.spin(forward, 12, volt);
-	
-	// sylib::delay(570);
-	// conveyor.stop();
-	// chassis.drive_to_point(9, 44.5);
-	
-	// conveyor.spin(forward, 12, volt);
-	// scorer.spin(forward, 12, volt);
-	// sylib::delay(700);
-	// chassis.drive_to_point(25, 44.5);
+  chassis.drive_to_pose(-11.887, -11.898, 45); // go to bottom middle goal
+  conveyor.spin(reverse, 12, volt);
+  conveyor2.spin(reverse, 200, rpm);
+  scorer.spin(reverse, 85, rpm);
+  wait(1500, msec); //unloading time
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  chassis.drive_to_pose(-37.677, -4.161, 0);
+  chassis.drive_to_pose(33.665, 14.179, 45);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-12.746, 29.367, 45); // picked up second 3 stack
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  chassis.drive_to_pose(-9.881, 9.594, 315); // go to top middle goal
+  scorer.spin(reverse, 200, rpm); //unload
+  wait(100, msec);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  wait(1000, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  chassis.drive_to_pose(-47.134, 46.847, 315);
+  chassis.turn_to_angle(270);
+  loaderToggle(); //loader down
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-57.737, 46.847, 270); // at loader
+  wait(500, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  chassis.drive_to_pose(-30.8, 46.847, 270); // at long goal
+  hoodToggle();
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 200, rpm);
 }
 
 /** 
@@ -241,75 +182,7 @@ void blue_solo_awp(){
 
 // Auton for red left start
 void red_left(){
-  //4 Block Push
-  odom_constants();
-
-  chassis.set_coordinates(60, 16.8, 270);
-
-  chassis.drive_max_voltage = 5;
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  chassis.drive_to_pose(20, 13.6, 270);
-  chassis.drive_max_voltage = 8;
-
-  sylib::delay(1000);
-  conveyor.stop();
-  conveyor2.stop();
-
-  chassis.drive_to_point(46, -12.4);
-  chassis.turn_to_angle(90);
-
-  chassis.drive_max_voltage = 5;
-  chassis.drive_distance(-26);
-
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(2000);
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
-
-  /*wingsToggle();
-
-  chassis.set_coordinates(52,-18, 270);
-
-  chassis.drive_max_voltage = 4;
-  conveyor.spin(forward, 12, volt);
-  chassis.drive_to_pose(23.287, -23, 250);
-  chassis.drive_max_voltage = 8;
-
-  sylib::delay(1000);
-  conveyor.stop();
-
-  chassis.turn_to_angle(90);
-  loaderToggle();
   
-  chassis.drive_max_voltage = 8;
-  chassis.drive_to_pose(62, -45, 90);
-  
-  conveyor.spin(forward, 12, volt);
-
-  sylib::delay(1200);
-  conveyor.stop();
-
-  chassis.drive_max_voltage = 4;
-  chassis.drive_distance(-30);
-
-  conveyor.spin(forward, 12, volt);
-  scorer.spin(forward, 12, volt);
-  sylib::delay(2500);
-  conveyor.spin(reverse, 12, volt);
-  sylib::delay(250);
-  conveyor.spin(forward, 12, volt);
-  sylib::delay(2500);
-  conveyor.spin(reverse, 12, volt);
-  sylib::delay(250);
-  conveyor.spin(forward, 12, volt);
-  loaderToggle();
-  sylib::delay(5000);
-  conveyor.stop();
-  scorer.stop();*/
 }
 
 // Auton for red right start
@@ -337,24 +210,26 @@ void red_right(){
   chassis.drive_to_pose(-31.086, -47.145, 270); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 200, rpm);
   loaderToggle();
-  hoodToggle();
+  hoodToggle(); //hood up
+  scorer.spin(forward, 200, rpm);
   wait(1000, msec); //unloading time
-  hoodToggle();
-  chassis.drive_to_pose(-23.063, -34.536, 50);
+  hoodToggle(); // hood down
+  chassis.drive_to_pose(-32.233, -33.39, 75);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-22.776, -17.056, 30);
+  chassis.drive_to_pose(-13.319, -28.519, 75);
+  chassis.turn_to_angle(300);
+  chassis.drive_to_pose(-30.227, -15.91, 300);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-11.313, -11.325, 45); // at middle goal
+  chassis.drive_to_pose(-11.887, -11.898, 45); // at middle goal
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(1000, msec); //unloading time
+  wait(1500, msec); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -383,6 +258,7 @@ void blue_right(){
 
 // Skills auton
 void skills(){
+  //skills auto, one full long goal with two loaders and a park
   odom_constants();
   chassis.set_coordinates(-46.274, -14.764, 0);
   chassis.drive_max_voltage = 8;
@@ -472,6 +348,7 @@ void skills(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
+  chassis.drive_max_voltage = 12;
   chassis.drive_to_pose(-63.181, 5, 0); // in park zone with it hopefully cleared.
   conveyor.stop();
   conveyor2.stop();
