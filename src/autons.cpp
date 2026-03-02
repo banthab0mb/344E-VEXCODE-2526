@@ -94,7 +94,7 @@ void red_solo_awp(){
   odom_constants();
 
   chassis.set_coordinates(-46.274, -14.764, 0);
-  chassis.drive_max_voltage = 8;
+  chassis.drive_max_voltage = 12;
   parkToggle();
 
   chassis.drive_to_pose(-46.561, -46.859, 0);
@@ -109,6 +109,7 @@ void red_solo_awp(){
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
+  chassis.drive_max_voltage = 12;
   chassis.drive_to_pose(-31.086, -47.145, 270); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
@@ -122,6 +123,7 @@ void red_solo_awp(){
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
   chassis.drive_to_pose(-13.319, -28.519, 75);
+  chassis.drive_max_voltage = 4;
   chassis.turn_to_angle(300);
   chassis.drive_to_pose(-30.227, -15.91, 300); // pick up 3 stack
   conveyor.stop();
@@ -135,8 +137,10 @@ void red_solo_awp(){
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
+  chassis.drive_max_voltage = 12;
   chassis.drive_to_pose(-37.677, -4.161, 0);
   chassis.drive_to_pose(33.665, 14.179, 45);
+  chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
@@ -153,17 +157,20 @@ void red_solo_awp(){
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
+  chassis.drive_max_voltage = 12;
   chassis.drive_to_pose(-47.134, 46.847, 315);
   chassis.turn_to_angle(270);
   loaderToggle(); //loader down
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
+  chassis.drive_max_voltage = 4;
   chassis.drive_to_pose(-57.737, 46.847, 270); // at loader
   wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
+  chassis.drive_max_voltage = 12;
   chassis.drive_to_pose(-30.8, 46.847, 270); // at long goal
   hoodToggle();
   conveyor.spin(forward, 12, volt);
