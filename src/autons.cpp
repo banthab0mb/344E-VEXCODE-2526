@@ -55,11 +55,11 @@ void parkToggle() {
   park.set(parkState);
 }
 
-bool trapdoorState = false;
-// Toggle for trapdoor
-void trapdoorToggle() {
-  trapdoorState = !trapdoorState;
-  trapdoor.set(trapdoorState);
+bool hoodState = false;
+// Toggle for hood
+void hoodToggle() {
+  hoodState = !hoodState;
+  hood.set(hoodState);
 }
 
 bool wingsState = false;
@@ -144,7 +144,7 @@ void red_solo_awp(){
 
   chassis.drive_to_pose(8.884, -9.748, 315);
 
-  trapdoorToggle();
+  hoodToggle();
 
   scorer.spin(forward, 12, volt);
   conveyor.spin(forward, 12, volt);
@@ -183,7 +183,7 @@ void red_solo_awp(){
 	// chassis.left_swing_to_angle(700);
 	
 	// loaderToggle();
-	// trapdoorToggle();
+	// hoodToggle();
 	// sylib::delay(250);
 	// chassis.drive_to_point(54, -53);
 	// conveyor.spin(forward, 12, volt);
@@ -204,11 +204,11 @@ void red_solo_awp(){
 	
 	// scorer.spin(forward, 7.56, volt);
 	// conveyor.spin(forward, 9, volt);
-	// trapdoorToggle();
+	// hoodToggle();
 	// sylib::delay(700);
 	// scorer.stop();
 	// chassis.drive_to_point(13, -24);
-	// trapdoorToggle();
+	// hoodToggle();
 	// chassis.turn_to_angle(0);
 	// chassis.drive_to_point(16.5, 10);
 	// chassis.turn_to_angle(80);
@@ -339,9 +339,9 @@ void red_right(){
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 200, rpm);
   loaderToggle();
-  trapdoorToggle(); // make this into hood toggle
+  hoodToggle();
   wait(1000, msec); //unloading time
-  trapdoorToggle();
+  hoodToggle();
   chassis.drive_to_pose(-23.063, -34.536, 50);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);

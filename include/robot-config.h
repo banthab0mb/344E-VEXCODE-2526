@@ -28,9 +28,10 @@ extern motor conveyor2;
 extern motor scorer;
 
 extern digital_out matchLoader;
-extern digital_out trapdoor;
+extern digital_out hood;
 extern digital_out park;
 extern digital_out wings;
+extern digital_out intakePiston;
 
 extern distance parkSensor;
 
@@ -42,6 +43,6 @@ void conveyorControl();
 void scorerControl();
 
 void userLoaderToggle();
-void userTrapdoorToggle();
+void userHoodToggle();
 void userWingsToggle();
 void userParkToggle();

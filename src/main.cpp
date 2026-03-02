@@ -246,8 +246,9 @@ void usercontrol(void) {
   // Controller button callbacks
   Controller.ButtonDown.pressed(userLoaderToggle);
   Controller.ButtonUp.pressed(userParkToggle);
-  Controller.ButtonY.pressed(userTrapdoorToggle);
+  Controller.ButtonY.pressed(userHoodToggle);
   Controller.ButtonB.pressed(userWingsToggle);
+  Controller.ButtonRight.pressed(userIntakeToggle);
 
   std::uint32_t clock = sylib::millis();
   while (1) {

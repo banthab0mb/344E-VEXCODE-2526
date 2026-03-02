@@ -29,9 +29,10 @@ motor conveyor2 = motor(PORT18, ratio18_1, false);
 motor scorer = motor(PORT20, ratio18_1, true);
 
 digital_out matchLoader = digital_out(Brain.ThreeWirePort.B);
-digital_out trapdoor = digital_out(Brain.ThreeWirePort.C);
+digital_out hood = digital_out(Brain.ThreeWirePort.C);
 digital_out park = digital_out(Brain.ThreeWirePort.D);
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
+digital_out intakePiston = digital_out(Brain.ThreeWirePort.F);
 
 distance parkSensor = distance(PORT4);
 
@@ -92,11 +93,11 @@ void userParkToggle() {
   park.set(userParkState);
 }
 
-bool userTrapdoorState = false;
-// Toggle for trapdoor
-void userTrapdoorToggle() {
-  userTrapdoorState = !userTrapdoorState;
-  trapdoor.set(userTrapdoorState);
+bool userHoodState = false;
+// Toggle for hood
+void userHoodToggle() {
+  userHoodState = !userHoodState;
+  hood.set(userhoodState);
 }
 
 bool userWingsState = false;
@@ -104,4 +105,11 @@ bool userWingsState = false;
 void userWingsToggle() {
   userWingsState = !userWingsState;
   wings.set(userWingsState);
+}
+
+bool userIntakeState = false;
+// Toggle for intake piston
+void userIntakeToggle() {
+  userIntakeState = !userIntakeState;
+  intakePiston.set(userIntakeState);
 }
