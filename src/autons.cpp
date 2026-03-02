@@ -384,111 +384,96 @@ void blue_right(){
 // Skills auton
 void skills(){
   odom_constants();
+  chassis.set_coordinates(-46.274, -14.764, 0);
+  chassis.drive_max_voltage = 8;
+  parkToggle();
 
-  // Deploy scraper mech
-  //loaderToggle(); 
-  
-  chassis.drive_max_voltage = 12;
+  chassis.drive_to_pose(-46.561, -46.859, 0);
+  chassis.turn_to_angle(270);
+  loaderToggle();
+  chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
-  chassis.drive_distance(20);
-
-  // // Set inital coordinates
-  // chassis.set_coordinates(0, 0, 180); 
-  
-  // // Drive to loader 1
-  // chassis.drive_to_pose(0, 31.456, 270);
-
-  // // Line up with loader 1
-  // chassis.drive_to_pose(11.543, 31.456, 270);
-
-  // // Empty loader 1
-  // conveyor.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  
-  // // Drive around goal 1
-  // chassis.drive_to_pose(-11.254, 40.111, 110);
-  // chassis.drive_to_pose(-42.131, 45.593, 90);
-  
-  // chassis.drive_to_pose(-97.824, 32.319, 270);
-  
-  // // Line up with goal 1
-  // chassis.drive_to_pose(-77.336, 31.456, 90);
-
-  // // Score load 1
-  // conveyor.spin(forward, 12, volt);
-  // scorer.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  // scorer.stop();
-
-  // // Line up with loader 2
-  // chassis.drive_to_pose(-111.964, 31.456, 90);
-
-  // // Empty loader 2
-  // conveyor.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  
-  // // Line back up with goal 1
-  // chassis.drive_to_pose(-77.336, 31.456, 270);
-
-  // // Score load 2
-  // conveyor.spin(forward, 12, volt);
-  // scorer.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  // scorer.stop();
-
-  // // Drive to loader 3
-  // chassis.drive_to_pose(-87.147, -2.02, 10);
-
-  // // Line up with loader 3
-  // chassis.drive_to_pose(-110.809, -62.33, 90);
-
-  // // Empty loader 3
-  // conveyor.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  
-  // // Drive to goal 2
-  // chassis.drive_to_pose(-66.082, -77.624, 270);
-  // chassis.drive_to_pose(0, -62.33, 270);
-  
-  // // Line up with goal 2
-  // chassis.drive_to_pose(-22.797, -62.33, 270);
-
-  // // Score load 3
-  // conveyor.spin(forward, 12, volt);
-  // scorer.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  // scorer.stop();
-
-  // // Line up with loader 4
-  // chassis.drive_to_pose(11.254, -61.753, 270);
-
-  // // Empty loader 4
-  // conveyor.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  
-  // // Line back up with goal 2
-  // chassis.drive_to_pose(-23.374, -62.042, 270);
-
-  // // Score load 4
-  // conveyor.spin(forward, 12, volt);
-  // scorer.spin(forward, 12, volt);
-  // sylib::delay(500);
-  // conveyor.stop();
-  // scorer.stop();
-
-  // // Line up for park
-  // chassis.drive_to_pose(12.985, -41.842, 180);
-
-  // // Retract scraper mech
-  // loaderToggle();
-
-  // // Park
-  // chassis.drive_to_pose(12.985, -17.314, 180);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-59.169, -47.145, 270); //at loader 1
+  chassis.drive_distance(-3); // loading sequence
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  chassis.drive_distance(-3);
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  chassis.drive_distance(-3);
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  chassis.drive_to_pose(-25.928, -60.327, 270);
+  chassis.drive_to_pose(32.244, -59.754, 270);
+  chassis.drive_to_pose(46.286, -47.432, 270);
+  chassis.turn_to_angle(90);
+  chassis.drive_to_pose(30.238, -47.432, 90); // at goal first time
+  hoodToggle(); //lift hood up
+  conveyor.spin(forward, 12, volt); //unloading sequence for skills (just for safety)
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 200, rpm);
+  wait(2500, msec);
+  conveyor.spin(reverse, 12, volt);
+  conveyor2.spin(reverse, 200, rpm);
+  scorer.spin(reverse, 200, rpm);
+  wait(100, msec);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 200, rpm);
+  wait(5000, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  wait(1000, msec);
+  hoodToggle(); // hood back down
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(58.894, -47.432, 90); // at second loader
+  chassis.drive_distance(-3); //loading sequence
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  chassis.drive_distance(-3);
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  chassis.drive_distance(-3);
+  chassis.drive_distance(3);
+  wait(2000, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  hoodToggle(); // hood up
+  chassis.drive_to_pose(30.238, -47.432, 90); // at goal second time
+  conveyor.spin(forward, 12, volt); //unloading sequence for skills (just for safety)
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 200, rpm);
+  wait(2500, msec);
+  conveyor.spin(reverse, 12, volt);
+  conveyor2.spin(reverse, 200, rpm);
+  scorer.spin(reverse, 200, rpm);
+  wait(100, msec);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 200, rpm);
+  wait(5000, msec);
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
+  wait(1000, msec);
+  hoodToggle(); //hood down
+  chassis.drive_to_pose(38.262, -33.104, 0); // leave goal
+  chassis.drive_to_pose(-62.035, -31.957, 270);
+  chassis.turn_to_angle(0); // next to park zone
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-63.181, 5, 0); // in park zone with it hopefully cleared.
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
 }
