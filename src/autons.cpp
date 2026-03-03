@@ -192,16 +192,17 @@ void red_right(){
   chassis.drive_to_pose(-46.561, -46.859, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
+  wait(500, msec);  
   chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-59.169, -47.145, 270); //at loader
+  chassis.drive_to_pose(-58.169, -47.145, 270); //at loader
   wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-31.086, -47.145, 270); // at long goal
+  chassis.drive_to_pose(-16.086, -47.145, 270); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();

@@ -76,12 +76,12 @@ void scorerControl() {
     }
   } else if(Controller.ButtonL2.pressing()) {
     scorer.spin(reverse, 200, rpm);
-    if (userHoodState) {
-      userHoodToggle();
-    }
   } else {
     if (noConveyor) {
       scorer.stop();
+    }
+    if (userHoodState) {
+      userHoodToggle();
     }
   }
 }
