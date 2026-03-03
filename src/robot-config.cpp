@@ -96,13 +96,9 @@ void userLoaderToggle() {
 }
 
 bool userParkState = false;
-// Macro for double park
+// Control for double park
 void userParkToggle() {
   userParkState = !userParkState;
-  while (!parkSensor.isObjectDetected()) {
-    conveyor.spin(reverse, 12, volt);
-    conveyor2.spin(reverse, 200, rpm);
-  }
   park.set(userParkState);
 }
 

@@ -110,8 +110,6 @@ void pre_auton() {
   vexcodeInit();
   default_constants();
 
-  park.set(false);
-
   // Vibrate controller when init is done
   Controller.rumble("-");
 

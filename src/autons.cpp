@@ -75,19 +75,6 @@ void drive_forward(){
   chassis.drive_distance(7);
 }
 
-
-/*
-chassis.moveTo(47.772, 16.754, 5000);
-chassis.moveTo(40.859, 39.799, 5000);
-chassis.moveTo(57.566, 46.424, 5000);
-
-chassis.moveTo(35.674, 33.461, 5000);
-chassis.moveTo(22.999, 21.939, 5000);
-chassis.moveTo(22.711, -22.999, 5000);
-chassis.moveTo(8.884, -9.748, 5000);
-chassis.moveTo(61.311, -48.636, 5000);
-
-*/
 // Solo AWP on red side
 void red_solo_awp(){
   // win point auto, 
