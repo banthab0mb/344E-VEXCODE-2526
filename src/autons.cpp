@@ -82,7 +82,7 @@ void red_solo_awp(){
 
   chassis.set_coordinates(-46.274, -14.764, 0);
   chassis.drive_max_voltage = 12;
-  parkToggle();
+  //parkToggle();
 
   chassis.drive_to_pose(-46.561, -46.859, 0);
   chassis.turn_to_angle(270);
@@ -189,7 +189,7 @@ void red_right(){
   chassis.drive_max_voltage = 8;
   //parkToggle();
 
-  chassis.drive_to_pose(-46.561, -46.745, 0);
+  chassis.drive_to_pose(-46.561, -46.245, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
   wait(500, msec);  
@@ -197,40 +197,41 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-57.969, -46.745, 270); //at loader
+  chassis.drive_distance(10); //at loader
   wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_distance(-15); // at long goal
+  chassis.drive_distance(-29); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(1000, msec); //unloading time
+  wait(2000, msec); //unloading time
+  chassis.drive_distance(10);
   hoodToggle(); // hood down
-  chassis.drive_to_pose(-32.233, -33.39, 75); // not working from here yet.
+  chassis.drive_to_pose(-32.233, -33.39, 75); 
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-13.319, -28.519, 75);
-  chassis.turn_to_angle(300);
+  chassis.drive_to_pose(-13.319, -22.519, 75); //not working from here
+  chassis.turn_to_angle(300); //turns after the 3 stack //this is tghe issue
   chassis.drive_to_pose(-30.227, -15.91, 300);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-11.887, -11.898, 75); // at middle goal
+  chassis.drive_to_pose(-8.887, -13.898, 280); // at middle goal
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(1500, msec); //unloading time
+  wait(2500, msec); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-31.086, -36.256, 270); // ready for wing push
-  chassis.drive_to_pose(-9.881, -36.829, 270); // wing push
-  wholeDrivetrain.stop(hold);
+  //chassis.drive_to_pose(-31.086, -36.256, 270); // ready for wing push
+  //chassis.drive_to_pose(-9.881, -36.829, 270); // wing push
+  //wholeDrivetrain.stop(hold);
 }
 
 /** 
