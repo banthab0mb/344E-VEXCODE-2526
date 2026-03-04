@@ -187,9 +187,9 @@ void red_right(){
 
   chassis.set_coordinates(-46.274, -14.764, 0);
   chassis.drive_max_voltage = 8;
-  parkToggle();
+  //parkToggle();
 
-  chassis.drive_to_pose(-46.561, -46.859, 0);
+  chassis.drive_to_pose(-46.561, -46.745, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
   wait(500, msec);  
@@ -197,12 +197,12 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-58.169, -47.145, 270); //at loader
+  chassis.drive_to_pose(-57.969, -46.745, 270); //at loader
   wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-16.086, -47.145, 270); // at long goal
+  chassis.drive_distance(-15); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
@@ -210,7 +210,7 @@ void red_right(){
   scorer.spin(forward, 200, rpm);
   wait(1000, msec); //unloading time
   hoodToggle(); // hood down
-  chassis.drive_to_pose(-32.233, -33.39, 75);
+  chassis.drive_to_pose(-32.233, -33.39, 75); // not working from here yet.
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
@@ -220,7 +220,7 @@ void red_right(){
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-11.887, -11.898, 45); // at middle goal
+  chassis.drive_to_pose(-11.887, -11.898, 75); // at middle goal
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
