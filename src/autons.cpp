@@ -197,12 +197,12 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_distance(10); //at loader
+  chassis.drive_distance(10.5); //at loader
   wait(500, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_distance(-29); // at long goal
+  chassis.drive_distance(-29.5); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
@@ -215,13 +215,14 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-13.319, -22.519, 75); //not working from here
-  chassis.turn_to_angle(300); //turns after the 3 stack //this is tghe issue
-  chassis.drive_to_pose(-30.227, -15.91, 300);
+  chassis.drive_to_pose(-13.319, -22.519, 75); 
+  //chassis.turn_to_angle(75); //turns after the 3 stack 
+  //chassis.drive_to_pose(-34, -21, 300);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-8.887, -13.898, 280); // at middle goal
+  // THIS IS WHERE PROBLEM 
+  chassis.drive_to_pose(-10, -10, 45); // at middle goal
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
