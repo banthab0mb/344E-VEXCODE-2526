@@ -71,8 +71,9 @@ void wingsToggle() {
 
 // Drives forward X inches
 void drive_forward(){
-  parkToggle();
-  chassis.drive_distance(7);
+  chassis.set_coordinates(0,0,0);
+  chassis.turn_to_angle(90);
+  //chassis.drive_distance(7);
 }
 
 // Solo AWP on red side
@@ -198,40 +199,42 @@ void red_right(){
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
   chassis.drive_distance(10); //at loader
-  wait(500, msec);
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
-  chassis.drive_distance(-29); // at long goal
+  wait(350, msec);
+  chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(2000, msec); //unloading time
+  wait(1200, msec); //unloading time
   chassis.drive_distance(10);
   hoodToggle(); // hood down
+  conveyor.stop();
+  conveyor2.stop();
+  scorer.stop();
   chassis.drive_to_pose(-32.233, -33.39, 75); 
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-13.319, -22.519, 75); //not working from here
-  chassis.turn_to_angle(300); //turns after the 3 stack //this is tghe issue
-  chassis.drive_to_pose(-30.227, -15.91, 300);
+  chassis.drive_to_pose(-13.319, -21.719, 75); //picks up 3 stack
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-8.887, -13.898, 280); // at middle goal
+  chassis.drive_to_pose(-7.087, -14.698, 45); // at middle goal
+  chassis.drive_distance(4);
+  wholeDrivetrain.stop();
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(2500, msec); //unloading time
+  wait(1000, msec); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  //chassis.drive_to_pose(-31.086, -36.256, 270); // ready for wing push
-  //chassis.drive_to_pose(-9.881, -36.829, 270); // wing push
-  //wholeDrivetrain.stop(hold);
+  chassis.drive_max_voltage = 10;
+  chassis.drive_distance(-35.3);
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(24);
+  wholeDrivetrain.stop(hold);
 }
 
 /** 
