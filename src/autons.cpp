@@ -15,15 +15,15 @@
 
 void default_constants(){
   // Each constant set is in the form of (maxVoltage, kP, kI, kD, startI).
-  chassis.set_drive_constants(10, 1.5, 0, 10, 0);
-  chassis.set_heading_constants(6, .4, 0, 1, 0);
-  chassis.set_turn_constants(12, .4, .03, 3, 15);
-  chassis.set_swing_constants(12, .3, .001, 2, 15);
+  chassis.set_drive_constants(10, 0.9, 0, 5.15, 0);
+  chassis.set_heading_constants(6, .370, 0.005, 2.8, 15);
+  chassis.set_turn_constants(6, .54, 0.01, 4.434, 0);
+  chassis.set_swing_constants(12, .437, .0295, 3.486, 15);
 
   // Each exit condition set is in the form of (settle_error, settle_time, timeout).
-  chassis.set_drive_exit_conditions(1.5, 300, 5000);
-  chassis.set_turn_exit_conditions(1, 300, 3000);
-  chassis.set_swing_exit_conditions(1, 300, 3000);
+  chassis.set_drive_exit_conditions(1.5, 200, 2000);
+  chassis.set_turn_exit_conditions(1.5, 200, 1000);
+  chassis.set_swing_exit_conditions(1, 200, 3000);
 }
 
 /**
@@ -71,9 +71,9 @@ void wingsToggle() {
 
 // Drives forward X inches
 void drive_forward(){
-  chassis.set_coordinates(0,0,0);
-  chassis.turn_to_angle(90);
-  //chassis.drive_distance(7);
+  //chassis.set_coordinates(0,0,0);
+  //chassis.turn_to_angle(90);
+  chassis.drive_distance(7);
 }
 
 // Solo AWP on red side
@@ -177,7 +177,33 @@ void blue_solo_awp(){
 
 // Auton for red left start
 void red_left(){
+  //7 block long goal
+  odom_constants();
   
+  chassis.set_coordinates(-49.426, 17.045, 90);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-34.227, 15.612, 90); //ready for 3 stack
+  chassis.drive_max_voltage = 4;
+  chassis.turn_to_angle(45);
+  chassis.drive_to_pose(-17.045, 27.934, 45); //picked up 3 stack
+  chassis.turn_to_angle(315);
+  chassis.drive_max_voltage = 8;
+  chassis.drive_to_pose(-42.561, 48.847, 315); //ready for loader
+  chassis.turn_to_angle(270);
+  loaderToggle(); //loader down
+  wait(500, msec);
+  chassis.drive_distance(13); //at loader
+  wait(350, msec);
+  chassis.drive_to_pose(-17.561, 48.147, 270); //at long goal
+  wait(300, msec);
+  wholeDrivetrain.stop(hold);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  loaderToggle(); //loader up
+  hoodToggle(); //hood up
+  scorer.spin(forward, 200, rpm);
 }
 
 // Auton for red right start
@@ -190,7 +216,7 @@ void red_right(){
   chassis.drive_max_voltage = 8;
   //parkToggle();
 
-  chassis.drive_to_pose(-46.561, -46.245, 0);
+  chassis.drive_to_pose(-46.561, -44.445, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
   wait(500, msec);  
@@ -198,7 +224,7 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_distance(10); //at loader
+  chassis.drive_distance(11); //at loader
   wait(350, msec);
   chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
@@ -220,7 +246,7 @@ void red_right(){
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-7.087, -14.698, 45); // at middle goal
+  chassis.drive_to_pose(-6.487, -13.698, 45); // at middle goal
   chassis.drive_distance(4);
   wholeDrivetrain.stop();
   conveyor.spin(reverse, 12, volt);
@@ -231,9 +257,9 @@ void red_right(){
   conveyor2.stop();
   scorer.stop();
   chassis.drive_max_voltage = 10;
-  chassis.drive_distance(-35.3);
+  chassis.drive_distance(-33.2);
   chassis.turn_to_angle(90);
-  chassis.drive_distance(24);
+  chassis.drive_distance(29);
   wholeDrivetrain.stop(hold);
 }
 
@@ -259,35 +285,29 @@ void blue_right(){
 void skills(){
   //skills auto, one full long goal with two loaders and a park
   odom_constants();
+
   chassis.set_coordinates(-46.274, -14.764, 0);
   chassis.drive_max_voltage = 8;
-  parkToggle();
+  //parkToggle();
 
-  chassis.drive_to_pose(-46.561, -46.859, 0);
+  chassis.drive_to_pose(-46.561, -44.445, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
+  wait(500, msec);  
   chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(-59.169, -47.145, 270); //at loader 1
-  chassis.drive_distance(-3); // loading sequence
-  chassis.drive_distance(3);
-  wait(2000, msec);
-  chassis.drive_distance(-3);
-  chassis.drive_distance(3);
-  wait(2000, msec);
-  chassis.drive_distance(-3);
-  chassis.drive_distance(3);
-  wait(2000, msec);
+  chassis.drive_distance(11); //at loader 1
+  wait(5000, msec);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-25.928, -60.327, 270);
-  chassis.drive_to_pose(32.244, -59.754, 270);
-  chassis.drive_to_pose(46.286, -47.432, 270);
+  chassis.drive_to_pose(-25.928, -57.327, 270);
+  chassis.drive_to_pose(32.244, -57.754, 270);
+  chassis.drive_to_pose(46.286, -45.432, 270);
   chassis.turn_to_angle(90);
-  chassis.drive_to_pose(30.238, -47.432, 90); // at goal first time
+  chassis.drive_to_pose(30.238, -45.432, 90); // at goal first time
   hoodToggle(); //lift hood up
   conveyor.spin(forward, 12, volt); //unloading sequence for skills (just for safety)
   conveyor2.spin(forward, 200, rpm);
