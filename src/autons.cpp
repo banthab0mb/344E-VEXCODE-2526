@@ -284,6 +284,8 @@ void blue_right(){
 // Skills auton
 void skills(){
   //skills auto, one full long goal with two loaders and a park
+  //4 block long goal, 3 block mid goal split with long goal push.
+  //might need to make loader go down to help grab the 3 stack of blocks
   odom_constants();
 
   chassis.set_coordinates(-46.274, -14.764, 0);
@@ -298,78 +300,24 @@ void skills(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_distance(11); //at loader 1
-  wait(5000, msec);
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
-  chassis.drive_to_pose(-25.928, -57.327, 270);
-  chassis.drive_to_pose(32.244, -57.754, 270);
-  chassis.drive_to_pose(46.286, -45.432, 270);
-  chassis.turn_to_angle(90);
-  chassis.drive_to_pose(30.238, -45.432, 90); // at goal first time
-  hoodToggle(); //lift hood up
-  conveyor.spin(forward, 12, volt); //unloading sequence for skills (just for safety)
-  conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 200, rpm);
-  wait(2500, msec);
-  conveyor.spin(reverse, 12, volt);
-  conveyor2.spin(reverse, 200, rpm);
-  scorer.spin(reverse, 200, rpm);
-  wait(100, msec);
+  chassis.drive_distance(11); //at loader
+  wait(3500, msec);
+  chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
+  loaderToggle();
+  hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(5000, msec);
+  wait(5000, msec); //unloading time
+  chassis.drive_distance(10);
+  hoodToggle(); // hood down
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  wait(1000, msec);
-  hoodToggle(); // hood back down
+  chassis.drive_to_pose(-60.608, -19.062, 0);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_to_pose(58.894, -47.432, 90); // at second loader
-  chassis.drive_distance(-3); //loading sequence
-  chassis.drive_distance(3);
-  wait(2000, msec);
-  chassis.drive_distance(-3);
-  chassis.drive_distance(3);
-  wait(2000, msec);
-  chassis.drive_distance(-3);
-  chassis.drive_distance(3);
-  wait(2000, msec);
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
-  hoodToggle(); // hood up
-  chassis.drive_to_pose(30.238, -47.432, 90); // at goal second time
-  conveyor.spin(forward, 12, volt); //unloading sequence for skills (just for safety)
-  conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 200, rpm);
-  wait(2500, msec);
-  conveyor.spin(reverse, 12, volt);
-  conveyor2.spin(reverse, 200, rpm);
-  scorer.spin(reverse, 200, rpm);
-  wait(100, msec);
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 200, rpm);
-  wait(5000, msec);
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
-  wait(1000, msec);
-  hoodToggle(); //hood down
-  chassis.drive_to_pose(38.262, -33.104, 0); // leave goal
-  chassis.drive_to_pose(-62.035, -31.957, 270);
-  chassis.turn_to_angle(0); // next to park zone
-  conveyor.spin(forward, 12, volt);
-  conveyor2.spin(forward, 200, rpm);
-  scorer.spin(forward, 85, rpm);
-  chassis.drive_max_voltage = 12;
-  chassis.drive_to_pose(-63.181, 5, 0); // in park zone with it hopefully cleared.
-  conveyor.stop();
-  conveyor2.stop();
-  scorer.stop();
+  chassis.drive_max_voltage = 8;
+  chassis.drive_distance(50);
 }
