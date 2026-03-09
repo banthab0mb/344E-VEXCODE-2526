@@ -247,6 +247,7 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
+  chassis.drive_max_voltage = 1.5;
   chassis.drive_to_pose(-13.319, -21.719, 75); //picks up 3 stack
   conveyor.stop();
   conveyor2.stop();
@@ -257,7 +258,7 @@ void red_right(){
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(1000, msec); //unloading time
+  wait(1400, msec); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -339,15 +340,22 @@ void skills(){
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
   wait(5000, msec); //unloading time
+  chassis.drive_distance(20);
+  hoodToggle(); //hood down
+  chassis.drive_max_voltage = 12;
+  wait(800, msec);
+  chassis.drive_distance(-20);
+  hoodToggle(); //hood up
+  chassis.drive_max_voltage = 4;
   chassis.drive_distance(10);
   hoodToggle(); // hood down
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
-  chassis.drive_to_pose(-60.608, -19.062, 0);
+  chassis.drive_to_pose(-61.608, -19.062, 0);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_max_voltage = 8;
-  chassis.drive_distance(50);
+  chassis.drive_max_voltage = 12;
+  chassis.drive_distance(42);
 }
