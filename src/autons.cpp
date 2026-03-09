@@ -93,7 +93,7 @@ void red_solo_awp(){
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
   chassis.drive_to_pose(-59.169, -47.145, 270); //at loader
-  wait(500, msec);
+  sylib::delay(500);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -104,7 +104,7 @@ void red_solo_awp(){
   loaderToggle(); //loader up
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(1000, msec); //unloading time
+  sylib::delay(1000); //unloading time
   hoodToggle(); // hood down
   chassis.drive_to_pose(-32.233, -33.39, 75);
   conveyor.spin(forward, 12, volt);
@@ -121,7 +121,7 @@ void red_solo_awp(){
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(1500, msec); //unloading time
+  sylib::delay(1500); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -138,10 +138,10 @@ void red_solo_awp(){
   scorer.stop();
   chassis.drive_to_pose(-9.881, 9.594, 315); // go to top middle goal
   scorer.spin(reverse, 200, rpm); //unload
-  wait(100, msec);
+  sylib::delay(100);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
-  wait(1000, msec);
+  sylib::delay(1000);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -154,7 +154,7 @@ void red_solo_awp(){
   scorer.spin(forward, 85, rpm);
   chassis.drive_max_voltage = 4;
   chassis.drive_to_pose(-57.737, 46.847, 270); // at loader
-  wait(500, msec);
+  sylib::delay(500);
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -193,11 +193,11 @@ void red_left(){
   chassis.drive_to_pose(-42.561, 48.247, 315); //ready for loader
   chassis.turn_to_angle(270);
   loaderToggle(); //loader down
-  wait(500, msec);
-  chassis.drive_distance(13.5); //at loader
-  wait(350, msec);
-  chassis.drive_to_pose(-17.061, 48.147, 270); //at long goal
-  wait(300, msec);
+  sylib::delay(500);
+  chassis.drive_distance(13); //at loader
+  sylib::delay(500);
+  chassis.drive_to_pose(-17.561, 48.147, 270); //at long goal
+  sylib::delay(300);
   wholeDrivetrain.stop(hold);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
@@ -224,20 +224,20 @@ void red_right(){
   chassis.drive_to_pose(-46.561, -44.445, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
-  wait(500, msec);  
+  sylib::delay(500); 
   chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
   chassis.drive_distance(11); //at loader
-  wait(350, msec);
+  sylib::delay(350);
   chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(1200, msec); //unloading time
+  sylib::delay(500); //unloading time
   chassis.drive_distance(10);
   hoodToggle(); // hood down
   conveyor.stop();
@@ -258,7 +258,7 @@ void red_right(){
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  wait(1400, msec); //unloading time
+  sylib::delay(500); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
@@ -326,24 +326,24 @@ void skills(){
   chassis.drive_to_pose(-46.561, -40.445, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
-  wait(500, msec);  
+  sylib::delay(500);
   chassis.drive_max_voltage = 4;
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
   chassis.drive_distance(11); //at loader
-  wait(3500, msec);
+  sylib::delay(3500);
   chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle();
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(5000, msec); //unloading time
+  sylib::delay(500); //unloading time
   chassis.drive_distance(20);
   hoodToggle(); //hood down
   chassis.drive_max_voltage = 12;
-  wait(800, msec);
+  sylib::delay(800);
   chassis.drive_distance(-20);
   hoodToggle(); //hood up
   chassis.drive_max_voltage = 4;
