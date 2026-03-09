@@ -204,7 +204,7 @@ void red_left(){
   loaderToggle(); //loader up
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(3000, msec);
+  sylib::delay(3000);
   chassis.drive_max_voltage = 8;
   chassis.drive_distance(10);
   hoodToggle(); //hood down
@@ -307,18 +307,18 @@ void skills(){
   chassis.drive_to_pose(-42.561, 48.247, 315); //ready for loader
   chassis.turn_to_angle(270);
   loaderToggle(); //loader down
-  wait(500, msec);
+  sylib::delay(500);
   chassis.drive_distance(13.5); //at loader
-  wait(3500, msec);
+  sylib::delay(3500);
   chassis.drive_to_pose(-17.061, 48.147, 270); //at long goal
-  wait(300, msec);
+  sylib::delay(300);
   wholeDrivetrain.stop(hold);
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   loaderToggle(); //loader up
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
-  wait(5000, msec); //end of left side
+  sylib::delay(5000); //end of left side
   chassis.drive_distance(15);
 
   chassis.drive_max_voltage = 8;
