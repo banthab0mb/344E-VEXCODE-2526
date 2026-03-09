@@ -190,13 +190,13 @@ void red_left(){
   chassis.drive_to_pose(-17.045, 27.934, 45); //picked up 3 stack
   chassis.turn_to_angle(315);
   chassis.drive_max_voltage = 8;
-  chassis.drive_to_pose(-42.561, 48.847, 315); //ready for loader
+  chassis.drive_to_pose(-42.561, 48.247, 315); //ready for loader
   chassis.turn_to_angle(270);
   loaderToggle(); //loader down
   wait(500, msec);
-  chassis.drive_distance(13); //at loader
+  chassis.drive_distance(13.5); //at loader
   wait(350, msec);
-  chassis.drive_to_pose(-17.561, 48.147, 270); //at long goal
+  chassis.drive_to_pose(-17.061, 48.147, 270); //at long goal
   wait(300, msec);
   wholeDrivetrain.stop(hold);
   conveyor.spin(forward, 12, volt);
@@ -204,6 +204,11 @@ void red_left(){
   loaderToggle(); //loader up
   hoodToggle(); //hood up
   scorer.spin(forward, 200, rpm);
+  wait(3000, msec);
+  chassis.drive_max_voltage = 8;
+  chassis.drive_distance(10);
+  hoodToggle(); //hood down
+  chassis.drive_distance(-10);
 }
 
 // Auton for red right start
@@ -247,7 +252,7 @@ void red_right(){
   conveyor2.stop();
   scorer.stop();
   chassis.drive_to_pose(-6.487, -13.698, 45); // at middle goal
-  chassis.drive_distance(4);
+  chassis.drive_distance(2);
   wholeDrivetrain.stop();
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
@@ -259,7 +264,7 @@ void red_right(){
   chassis.drive_max_voltage = 10;
   chassis.drive_distance(-33.2);
   chassis.turn_to_angle(90);
-  chassis.drive_distance(29);
+  chassis.drive_distance(10);
   wholeDrivetrain.stop(hold);
 }
 
@@ -287,12 +292,37 @@ void skills(){
   //4 block long goal, 3 block mid goal split with long goal push.
   //might need to make loader go down to help grab the 3 stack of blocks
   odom_constants();
-
-  chassis.set_coordinates(-46.274, -14.764, 0);
+  
+  chassis.set_coordinates(-49.426, 17.045, 90);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  scorer.spin(forward, 85, rpm);
+  chassis.drive_to_pose(-34.227, 15.612, 90); //ready for 3 stack
+  chassis.drive_max_voltage = 2;
+  chassis.turn_to_angle(45);
+  chassis.drive_to_pose(-17.045, 27.934, 45); //picked up 3 stack
+  chassis.turn_to_angle(315);
   chassis.drive_max_voltage = 8;
-  //parkToggle();
+  chassis.drive_to_pose(-42.561, 48.247, 315); //ready for loader
+  chassis.turn_to_angle(270);
+  loaderToggle(); //loader down
+  wait(500, msec);
+  chassis.drive_distance(13.5); //at loader
+  wait(3500, msec);
+  chassis.drive_to_pose(-17.061, 48.147, 270); //at long goal
+  wait(300, msec);
+  wholeDrivetrain.stop(hold);
+  conveyor.spin(forward, 12, volt);
+  conveyor2.spin(forward, 200, rpm);
+  loaderToggle(); //loader up
+  hoodToggle(); //hood up
+  scorer.spin(forward, 200, rpm);
+  wait(5000, msec); //end of left side
+  chassis.drive_distance(15);
 
-  chassis.drive_to_pose(-46.561, -44.445, 0);
+  chassis.drive_max_voltage = 8;
+
+  chassis.drive_to_pose(-46.561, -40.445, 0);
   chassis.turn_to_angle(270);
   loaderToggle();
   wait(500, msec);  
