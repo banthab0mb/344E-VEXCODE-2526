@@ -193,7 +193,7 @@ void pre_auton() {
 
 /**
  * Auton function, which runs the selected auton. Case 0 is the default,
- * and will run in the brain screen goes untouched during preauton. 
+ * and will run if the brain screen goes untouched during preauton. 
  */
 
 void autonomous(void) {
@@ -245,11 +245,10 @@ void autonomous(void) {
 }
 
 // User Control Task
-
-void usercontrol(void) {
+void userControl(void) {
   
-  // Set underglow to white if no autonomous has run
-  // This makes sure the colors set in auto stay
+  // If NOT on field control and auton has NOT run, 
+  // then the underglow will be white
   if (!Competition.isFieldControl() && auto_started == false) {
     leftUnderglow.set_all(0xFFFFFF);
     rightUnderglow.set_all(0xFFFFFF);
@@ -259,7 +258,6 @@ void usercontrol(void) {
   auto_started = true;
 
   // Display brain banner image on brain screen
-
   Brain.Screen.drawImageFromBuffer((uint8_t*)brain_banner, 0, 0, sizeof(brain_banner));
 
   // Controller button callbacks
@@ -295,7 +293,7 @@ int main() {
 
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
+  Competition.drivercontrol(userControl);
 
   // Run the pre-autonomous function.
   pre_auton();
