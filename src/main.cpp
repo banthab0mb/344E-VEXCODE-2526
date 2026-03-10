@@ -1,10 +1,5 @@
 #include "vex.h"
 #include "sylib/sylib.hpp"
-#include "images/brain_banner.h"
-#include <cmath>
-#include <cstdint>
-#include <string>
-#include <vector>
 
 using namespace vex;
 competition Competition;

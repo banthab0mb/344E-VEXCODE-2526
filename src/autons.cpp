@@ -1,9 +1,5 @@
 #include "vex.h"
 #include "sylib/sylib.hpp"
-#include <cmath>
-#include <cstdint>
-#include <string>
-#include <vector>
 
 /**
  * Resets the constants for auton movement.
