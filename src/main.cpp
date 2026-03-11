@@ -264,9 +264,8 @@ void userControl(void) {
 
   std::uint32_t clock = sylib::millis();
   while (1) {
-    //Replace this line with chassis.control_tank(); for tank drive 
-    //or chassis.control_holonomic(); for holo drive.
 
+    // Drive Controller type
     chassis.control_arcade(); // Standard arcade with deadband
 
     // Motor controls
