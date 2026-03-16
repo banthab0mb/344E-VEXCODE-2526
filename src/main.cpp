@@ -4,17 +4,19 @@
 using namespace vex;
 competition Competition;
 
+/*
 // LED stuff
 
 // LED devices for each side of drive channel
 // left channel
-auto leftUnderglow = sylib::Addrled(22, 7, 11);
+auto leftUnderglow = sylib::Addrled(22, 7, 9);
 // right channel
 auto rightUnderglow = sylib::Addrled(22, 8, 11);
 
 //char that determines which alliance color we are 
 //for LED control 
 char currentTeam =  ' ';
+*/
 
 // Chassis constructor
 Drive chassis(
@@ -132,48 +134,48 @@ void pre_auton() {
       case 0:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Drive Forward");
-        currentTeam = 'R';
+        // currentTeam = 'R';
         break;
       case 1:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Left");
-        currentTeam = 'R';
+        // currentTeam = 'R';
         break;
       case 2:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Right");
-        currentTeam = 'R';
+        // currentTeam = 'R';
         break;
       case 3:
         Brain.Screen.setPenColor(red);
         Brain.Screen.printAt(5, 140, "Red Solo AWP");
-        currentTeam = 'R';
+        // currentTeam = 'R';
         break;
       case 4:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Drive Forward");
-        currentTeam = 'B';
+        // currentTeam = 'B';
         break;
       case 5:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Left");
-        currentTeam = 'B';
+        // currentTeam = 'B';
         break;
       case 6:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Right");
-        currentTeam = 'B';
+        // currentTeam = 'B';
 
         break;
       case 7:
         Brain.Screen.setPenColor(blue);
         Brain.Screen.printAt(5, 140, "Blue Solo AWP");
-        currentTeam = 'B';
+        // currentTeam = 'B';
         break;
       case 8:
         Brain.Screen.setPenColor(green); 
         Brain.Screen.printAt(5, 140, "Skills");
-        currentTeam = 'S';
+        // currentTeam = 'S';
         break;
     }
     if(Brain.Screen.pressing()){
@@ -193,7 +195,7 @@ void pre_auton() {
 
 void autonomous(void) {
   auto_started = true;
-
+/*
   if (currentTeam == 'R') { // if on RED alliance, set LEDs to RED
     leftUnderglow.set_all(0xFF0000);
     rightUnderglow.set_all(0xFF0000);
@@ -204,7 +206,7 @@ void autonomous(void) {
     leftUnderglow.set_all(0xFFFFFF);
     rightUnderglow.set_all(0xFFFFFF);
   }
-
+*/
   // Display brain banner image on brain screen
   Brain.Screen.drawImageFromBuffer((uint8_t*)brain_banner, 0, 0, sizeof(brain_banner));
 
@@ -241,13 +243,14 @@ void autonomous(void) {
 
 // User Control Task
 void userControl(void) {
-  
+  /*
   // If NOT on field control and auton has NOT run, 
   // then the underglow will be white
   if (!Competition.isFieldControl() && auto_started == false) {
     leftUnderglow.set_all(0xFFFFFF);
     rightUnderglow.set_all(0xFFFFFF);
   }
+  */
 
   // Tells the brain screen printing in preAuton() to stop
   auto_started = true;
