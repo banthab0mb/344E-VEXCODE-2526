@@ -34,7 +34,7 @@ Drive chassis(
 //HOLONOMIC_TWO_ROTATION
 //
 //Write it here:
-ZERO_TRACKER_ODOM,
+TANK_ONE_SIDEWAYS_ROTATION,
 
 //Add the names of your Drive motors into the motor groups below, separated by commas, i.e. motor_group(Motor1,Motor2,Motor3).
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
@@ -58,7 +58,7 @@ PORT9,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
-360,
+358,
 
 /*---------------------------------------------------------------------------*/
 /*                                  PAUSE!                                   */
@@ -91,13 +91,13 @@ PORT11,
 6.75,
 
 //Input the Sideways Tracker Port, following the same steps as the Forward Tracker Port:
-PORT11,
+PORT10,
 
 //Sideways tracker diameter (reverse to make the direction switch):
 -2,
 
 //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
--1.5
+3.1875
 
 );
 
