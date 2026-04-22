@@ -226,7 +226,7 @@ void red_right(){
   conveyor.spin(forward, 12, volt);
   conveyor2.spin(forward, 200, rpm);
   scorer.spin(forward, 85, rpm);
-  chassis.drive_distance(11); //at loader
+  chassis.drive_distance(13); //at loader
   sylib::delay(350);
   chassis.drive_distance(-31); // at long goal
   conveyor.spin(forward, 12, volt);
@@ -255,7 +255,7 @@ void red_right(){
   conveyor.spin(reverse, 12, volt);
   conveyor2.spin(reverse, 200, rpm);
   scorer.spin(reverse, 85, rpm);
-  sylib::delay(500); //unloading time
+  sylib::delay(700); //unloading time
   conveyor.stop();
   conveyor2.stop();
   scorer.stop();
